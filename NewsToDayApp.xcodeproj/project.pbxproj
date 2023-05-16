@@ -17,6 +17,7 @@
 		9516339E2A12C96000D4168F /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9516339D2A12C96000D4168F /* ProfileViewController.swift */; };
 		951633A02A12C9F100D4168F /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9516339F2A12C9F100D4168F /* Extensions.swift */; };
 		951D76A42A13A50400A9BCA5 /* FavoriteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951D76A32A13A50400A9BCA5 /* FavoriteButton.swift */; };
+		959CDE4F2A13C508002E0FA7 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959CDE4E2A13C508002E0FA7 /* MainTabBarController.swift */; };
 		CE66055D2A0A44630072FB01 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE66055C2A0A44630072FB01 /* TableViewCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -33,6 +34,7 @@
 		9516339D2A12C96000D4168F /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		9516339F2A12C9F100D4168F /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		951D76A32A13A50400A9BCA5 /* FavoriteButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteButton.swift; sourceTree = "<group>"; };
+		959CDE4E2A13C508002E0FA7 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		CE66055C2A0A44630072FB01 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -69,6 +71,7 @@
 				CEB7524F2A099C6200173F3F /* Model */,
 				7C97B9882A094D0D000693D2 /* AppDelegate.swift */,
 				7C97B98A2A094D0D000693D2 /* SceneDelegate.swift */,
+				959CDE4E2A13C508002E0FA7 /* MainTabBarController.swift */,
 				7C97B98C2A094D0D000693D2 /* ViewController.swift */,
 				CE66055C2A0A44630072FB01 /* TableViewCell.swift */,
 				9516339D2A12C96000D4168F /* ProfileViewController.swift */,
@@ -162,6 +165,7 @@
 			files = (
 				5B578EE42A0D39D3003AE3C9 /* Terms&Conditions.swift in Sources */,
 				7C97B98D2A094D0D000693D2 /* ViewController.swift in Sources */,
+				959CDE4F2A13C508002E0FA7 /* MainTabBarController.swift in Sources */,
 				CE66055D2A0A44630072FB01 /* TableViewCell.swift in Sources */,
 				951D76A42A13A50400A9BCA5 /* FavoriteButton.swift in Sources */,
 				951633A02A12C9F100D4168F /* Extensions.swift in Sources */,

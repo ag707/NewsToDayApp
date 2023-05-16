@@ -111,11 +111,11 @@ class ResultsViewController: UIViewController {
     }()
     
     @objc func backButtonTapped () {
-        navigationController?.popViewController(animated: true)
+            print("back")
     }
     
     @objc func shareButtonTapped () {
-        print("3")
+        print("share")
 
     }
     
@@ -125,10 +125,10 @@ class ResultsViewController: UIViewController {
         setConstraints()
         
     }
-    
-     func prepareForReuse() {
-        bookMarkButton.setInactive()
-    }
+//    
+//     func prepareForReuse() {
+//        bookMarkButton.setInactive()
+//    }
     
     private func addView () {
         view.backgroundColor = .white
@@ -189,7 +189,7 @@ extension ResultsViewController {
             textLabel.topAnchor.constraint(equalTo: resultLabel.bottomAnchor, constant: 10),
             textLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             textLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            textLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -40),
+            textLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -85),
 
             
         ])
