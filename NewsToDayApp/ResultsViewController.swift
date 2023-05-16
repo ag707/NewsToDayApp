@@ -24,11 +24,9 @@ class ResultsViewController: UIViewController {
         return button
     }()
     
-    private lazy var bookMarkButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setImage(UIImage(systemName: "bookmark"), for: .normal)
-        button.tintColor = .white
-        button.addTarget(self, action: #selector(markButtnTapped), for: .touchUpInside)
+    private lazy var bookMarkButton: FavoriteButton = {
+        let button = FavoriteButton(iconPointSize: 21)
+        button.addTarget(self, action: #selector(tappedFavoriteButton), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -113,12 +111,7 @@ class ResultsViewController: UIViewController {
     }()
     
     @objc func backButtonTapped () {
-        print("1")
-    }
-    
-    @objc func markButtnTapped () {
-        print("2")
-
+        navigationController?.popViewController(animated: true)
     }
     
     @objc func shareButtonTapped () {
@@ -131,6 +124,10 @@ class ResultsViewController: UIViewController {
         addView()
         setConstraints()
         
+    }
+    
+     func prepareForReuse() {
+        bookMarkButton.setInactive()
     }
     
     private func addView () {
@@ -198,4 +195,12 @@ extension ResultsViewController {
         ])
     }
 }
-
+extension ResultsViewController {
+    @objc func tappedFavoriteButton(_ button: FavoriteButton) {
+        if button.isFavorite == false {
+            button.setActive()
+        } else {
+            button.setInactive()
+        }
+    }
+}

@@ -16,6 +16,7 @@
 		9516339C2A12C91B00D4168F /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9516339B2A12C91B00D4168F /* ResultsViewController.swift */; };
 		9516339E2A12C96000D4168F /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9516339D2A12C96000D4168F /* ProfileViewController.swift */; };
 		951633A02A12C9F100D4168F /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9516339F2A12C9F100D4168F /* Extensions.swift */; };
+		951D76A42A13A50400A9BCA5 /* FavoriteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951D76A32A13A50400A9BCA5 /* FavoriteButton.swift */; };
 		CE66055D2A0A44630072FB01 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE66055C2A0A44630072FB01 /* TableViewCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -31,6 +32,7 @@
 		9516339B2A12C91B00D4168F /* ResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsViewController.swift; sourceTree = "<group>"; };
 		9516339D2A12C96000D4168F /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		9516339F2A12C9F100D4168F /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		951D76A32A13A50400A9BCA5 /* FavoriteButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteButton.swift; sourceTree = "<group>"; };
 		CE66055C2A0A44630072FB01 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -71,6 +73,7 @@
 				CE66055C2A0A44630072FB01 /* TableViewCell.swift */,
 				9516339D2A12C96000D4168F /* ProfileViewController.swift */,
 				9516339B2A12C91B00D4168F /* ResultsViewController.swift */,
+				951D76A32A13A50400A9BCA5 /* FavoriteButton.swift */,
 				7C97B9912A094D0E000693D2 /* Assets.xcassets */,
 				7C97B9932A094D0E000693D2 /* LaunchScreen.storyboard */,
 				7C97B9962A094D0E000693D2 /* Info.plist */,
@@ -160,6 +163,7 @@
 				5B578EE42A0D39D3003AE3C9 /* Terms&Conditions.swift in Sources */,
 				7C97B98D2A094D0D000693D2 /* ViewController.swift in Sources */,
 				CE66055D2A0A44630072FB01 /* TableViewCell.swift in Sources */,
+				951D76A42A13A50400A9BCA5 /* FavoriteButton.swift in Sources */,
 				951633A02A12C9F100D4168F /* Extensions.swift in Sources */,
 				7C97B9892A094D0D000693D2 /* AppDelegate.swift in Sources */,
 				9516339E2A12C96000D4168F /* ProfileViewController.swift in Sources */,
