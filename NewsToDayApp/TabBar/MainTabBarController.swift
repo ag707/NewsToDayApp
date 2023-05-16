@@ -22,8 +22,8 @@ class MainTabBarController: UITabBarController {
     }
     private func generateTabBar () {
         viewControllers = [
-            generateVC(vc: ViewController(), image: UIImage(named: "house")),
-            generateVC(vc: ResultsViewController(), image: UIImage(named: "category")),
+            generateVC(vc: ResultsViewController(), image: UIImage(named: "house")),
+            generateVC(vc: CategoryViewControllerL(), image: UIImage(named: "category")),
             generateVC(vc: ViewController(), image: UIImage(named: "saved")),
             generateVC(vc: ProfileViewController(),image: UIImage(named: "human")),
 
