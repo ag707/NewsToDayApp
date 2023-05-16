@@ -8,19 +8,19 @@
 import UIKit
 
 class ProfileViewController: UIViewController {
-
+    
     
     private lazy var profileLabel: UILabel = {
-       let label = UILabel()
-         label.text = "Profile"
-         label.font = UIFont.boldSystemFont(ofSize: 20)
-         label.textColor = .black
-         label.translatesAutoresizingMaskIntoConstraints = false
+        let label = UILabel()
+        label.text = "Profile"
+        label.font = UIFont.boldSystemFont(ofSize: 20)
+        label.textColor = .black
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
     private lazy var nameLabel: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.text = ["Dev P","Nik S","Adgar O"].randomElement()
         label.font = UIFont.systemFont(ofSize: 16)
         label.textColor = .black
@@ -29,7 +29,7 @@ class ProfileViewController: UIViewController {
     }()
     
     private lazy var emailLabel: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.text = ["dev@gmail.com","1@mail.ru","xxx@gamail.con"].randomElement()
         label.font = UIFont.systemFont(ofSize: 16)
         label.textColor = #colorLiteral(red: 0.4862745098, green: 0.5098039216, blue: 0.631372549, alpha: 1)
@@ -37,8 +37,8 @@ class ProfileViewController: UIViewController {
         return label
     }()
     
-     lazy var profileImage: UIImageView = {
-       let image = UIImageView()
+    lazy var profileImage: UIImageView = {
+        let image = UIImageView()
         image.image = UIImage(named: "profileImage")
         image.translatesAutoresizingMaskIntoConstraints = false
         return image
@@ -85,7 +85,7 @@ class ProfileViewController: UIViewController {
     }()
     
     private lazy var checkImage: UIImageView = {
-       let image = UIImageView()
+        let image = UIImageView()
         image.image = UIImage(systemName: "chevron.right")
         image.tintColor = #colorLiteral(red: 0.4862745098, green: 0.5098039216, blue: 0.631372549, alpha: 1)
         image.translatesAutoresizingMaskIntoConstraints = false
@@ -93,7 +93,7 @@ class ProfileViewController: UIViewController {
     }()
     
     private lazy var checkImage2: UIImageView = {
-       let image = UIImageView()
+        let image = UIImageView()
         image.image = UIImage(systemName: "chevron.right")
         image.tintColor = #colorLiteral(red: 0.4862745098, green: 0.5098039216, blue: 0.631372549, alpha: 1)
         image.translatesAutoresizingMaskIntoConstraints = false
@@ -102,7 +102,7 @@ class ProfileViewController: UIViewController {
     
     
     private lazy var signOutImage: UIImageView = {
-       let image = UIImageView()
+        let image = UIImageView()
         image.image = UIImage(systemName: "ipad.and.arrow.forward")
         image.tintColor = #colorLiteral(red: 0.4862745098, green: 0.5098039216, blue: 0.631372549, alpha: 1)
         image.translatesAutoresizingMaskIntoConstraints = false
@@ -134,7 +134,9 @@ class ProfileViewController: UIViewController {
     }
     
     @objc func termsTapped () {
-
+        let terms = TermsAndConditions()
+        present(terms, animated: true)
+        
     }
     
     @objc func signOut () {
@@ -167,7 +169,7 @@ extension ProfileViewController {
             buttonTerms.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             buttonTerms.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             buttonTerms.heightAnchor.constraint(equalToConstant: 55),
-
+            
             buttonSignOut.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -124),
             buttonSignOut.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             buttonSignOut.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),

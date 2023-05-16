@@ -24,11 +24,9 @@ class ResultsViewController: UIViewController {
         return button
     }()
     
-    private lazy var bookMarkButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setImage(UIImage(systemName: "bookmark"), for: .normal)
-        button.tintColor = .white
-        button.addTarget(self, action: #selector(markButtnTapped), for: .touchUpInside)
+    private lazy var bookMarkButton: FavoriteButton = {
+        let button = FavoriteButton(iconPointSize: 21)
+        button.addTarget(self, action: #selector(tappedFavoriteButton), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -113,16 +111,11 @@ class ResultsViewController: UIViewController {
     }()
     
     @objc func backButtonTapped () {
-        print("1")
-    }
-    
-    @objc func markButtnTapped () {
-        print("2")
-
+            print("back")
     }
     
     @objc func shareButtonTapped () {
-        print("3")
+        print("share")
 
     }
     
@@ -132,6 +125,10 @@ class ResultsViewController: UIViewController {
         setConstraints()
         
     }
+//    
+//     func prepareForReuse() {
+//        bookMarkButton.setInactive()
+//    }
     
     private func addView () {
         view.backgroundColor = .white
@@ -192,10 +189,18 @@ extension ResultsViewController {
             textLabel.topAnchor.constraint(equalTo: resultLabel.bottomAnchor, constant: 10),
             textLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             textLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            textLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -40),
+            textLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -85),
 
             
         ])
     }
 }
-
+extension ResultsViewController {
+    @objc func tappedFavoriteButton(_ button: FavoriteButton) {
+        if button.isFavorite == false {
+            button.setActive()
+        } else {
+            button.setInactive()
+        }
+    }
+}
