@@ -26,4 +26,8 @@ extension UIColor {
     static var BackgroundScreenColor: UIColor {
         #colorLiteral(red: 0.7099118829, green: 0.6924600005, blue: 0.6951708198, alpha: 1)
     }
+    
+    static var categoriesLabel: UIColor {
+        #colorLiteral(red: 0.4862745098, green: 0.5098039216, blue: 0.631372549, alpha: 1)
+    }
 }
