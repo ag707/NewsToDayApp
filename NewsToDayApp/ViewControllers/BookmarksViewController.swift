@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class BookmarksViewController: UIViewController {
     
     // заглушка - при пустом значении показывается текст о добавлении закладок. При наличии значении - показывает ячейки
     private let bookmarks: [Int] = []
@@ -132,7 +132,7 @@ class ViewController: UIViewController {
     }
 }
 
-extension ViewController: UITableViewDataSource, UITableViewDelegate {
+extension BookmarksViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         bookmarks.count
     }
