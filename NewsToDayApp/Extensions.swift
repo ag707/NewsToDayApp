@@ -20,7 +20,7 @@ extension UIColor {
     }
     
     static var blueButtonColor: UIColor {
-        #colorLiteral(red: 0.09019608051, green: 0, blue: 0.3019607961, alpha: 1)
+        #colorLiteral(red: 0.2784313725, green: 0.3529411765, blue: 0.8431372549, alpha: 1)
     }
     
     static var BackgroundScreenColor: UIColor {
@@ -29,5 +29,9 @@ extension UIColor {
     
     static var categoriesLabel: UIColor {
         #colorLiteral(red: 0.4862745098, green: 0.5098039216, blue: 0.631372549, alpha: 1)
+    }
+    
+    static var categoryButtonColor: UIColor {
+        #colorLiteral(red: 0.9529411765, green: 0.9568627451, blue: 0.9647058824, alpha: 1)
     }
 }

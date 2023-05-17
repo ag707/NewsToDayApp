@@ -9,8 +9,6 @@ import UIKit
 
 final class CategoryViewControllerL: UIViewController {
     
-    var categories = ["Covid-19","Sports","Politics","Life","Gaming","Animals","Nature","Food","Art","History"]
-    
     private lazy var categoriesLabal: UILabel = {
         let label = UILabel()
         label.text = "Categories"
@@ -33,12 +31,14 @@ final class CategoryViewControllerL: UIViewController {
     private lazy var column1StackView: UIStackView = {
         let stack1 = UIStackView()
         stack1.axis = .vertical
-        stack1.distribution = .fillEqually
-        stack1.spacing = 10
+//        stack1.distribution = .fillEqually
+        stack1.spacing = 20
         
         for _ in 1...5 {
             let button = CategoryButton()
-            button.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside)
+            button.heightAnchor.constraint(equalToConstant: 72).isActive = true
+            button.widthAnchor.constraint(equalToConstant: 160).isActive = true
+            button.addTarget(self, action: #selector(tappedCategoryButton), for: .touchUpInside)
             stack1.addArrangedSubview(button)
         }
         return stack1
@@ -48,11 +48,12 @@ final class CategoryViewControllerL: UIViewController {
         let stack2 = UIStackView()
         stack2.axis = .vertical
         stack2.distribution = .fillEqually
-        stack2.spacing = 10
-        
+        stack2.spacing = 20
         for _ in 1...5 {
             let button = CategoryButton()
-            button.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside)
+            button.heightAnchor.constraint(equalToConstant: 72).isActive = true
+            button.widthAnchor.constraint(equalToConstant: 160).isActive = true
+            button.addTarget(self, action: #selector(tappedCategoryButton), for: .touchUpInside)
             stack2.addArrangedSubview(button)
         }
         return stack2
@@ -62,19 +63,24 @@ final class CategoryViewControllerL: UIViewController {
         let container = UIStackView()
         container.axis = .horizontal
         container.distribution = .fillEqually
-        container.spacing = 10
+        container.spacing = 20
         container.addArrangedSubview(column1StackView)
         container.addArrangedSubview(column2StackView)
-
+        
         container.translatesAutoresizingMaskIntoConstraints = false
         return container
     }()
-
-        @objc func buttonTapped(_ sender: UIButton) {
-            // Обработка нажатия кнопки
-            print(sender.titleLabel?.text)
-        }
-
+    
+    private lazy var nextButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Next", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.backgroundColor = .blueButtonColor
+        button.layer.cornerRadius = 16
+        button.addTarget(self, action: #selector(tappedNextButton), for: .touchUpInside)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -87,6 +93,7 @@ final class CategoryViewControllerL: UIViewController {
         view.addSubview(categoriesLabal)
         view.addSubview(categoriesLabel)
         view.addSubview(containerView)
+        view.addSubview(nextButton)
     }
 }
 
@@ -99,10 +106,34 @@ extension CategoryViewControllerL {
             
             categoriesLabel.topAnchor.constraint(equalTo: categoriesLabal.bottomAnchor, constant: 10),
             categoriesLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            
+           
+            containerView.topAnchor.constraint(equalTo: categoriesLabel.bottomAnchor, constant: 20),
             containerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             containerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            containerView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+//            containerView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            
+            nextButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -140),
+            nextButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            nextButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            nextButton.heightAnchor.constraint(equalToConstant: 56)
         ])
+    }
+}
+
+extension CategoryViewControllerL {
+    @objc func tappedCategoryButton(_ button: CategoryButton) {
+        if button.isFavorite == false {
+            button.setActive()
+
+        } else {
+            button.setInactive()
+
+        }
+    }
+}
+
+extension CategoryViewControllerL {
+    @objc func tappedNextButton() {
+    print("next")
     }
 }
