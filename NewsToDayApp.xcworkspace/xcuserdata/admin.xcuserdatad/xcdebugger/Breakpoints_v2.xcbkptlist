@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "345906CD-32CF-479B-851A-6A3231A4BA80"
+   type = "0"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9C970F8C-941D-4CC2-9414-757751DF23FE"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "NewsToDayApp/ViewControllers/MainNewsViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "101"
+            endingLineNumber = "101"
+            landmarkName = "fetchData()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "9C970F8C-941D-4CC2-9414-757751DF23FE - df3a8d1f25b3975e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "NewsToDayApp.MainNewsViewController.fetchData() -&gt; ()"
+                  moduleName = "NewsToDayApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/admin/NewsToDayApp/NewsToDayApp/ViewControllers/MainNewsViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "100"
+                  endingLineNumber = "100"
+                  offsetFromSymbolStart = "697">
+               </Location>
+               <Location
+                  uuid = "9C970F8C-941D-4CC2-9414-757751DF23FE - 411d77e7faa1114a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;NewsToDayApp.MainNewsModel, Swift.Error&gt;) -&gt; () in NewsToDayApp.MainNewsViewController.fetchData() -&gt; ()"
+                  moduleName = "NewsToDayApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/admin/NewsToDayApp/NewsToDayApp/ViewControllers/MainNewsViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "89"
+                  endingLineNumber = "89"
+                  offsetFromSymbolStart = "152">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B1A9F28E-60F3-4563-A697-F4CAFB70A375"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "NewsToDayApp/ViewControllers/MainNewsViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "107"
+            endingLineNumber = "107"
+            landmarkName = "fetchData()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
