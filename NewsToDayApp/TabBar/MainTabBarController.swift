@@ -24,7 +24,7 @@ class MainTabBarController: UITabBarController {
         viewControllers = [
             generateVC(vc: ResultsViewController(), image: UIImage(named: "house")),
             generateVC(vc: CategoryViewControllerL(), image: UIImage(named: "category")),
-            generateVC(vc: ViewController(), image: UIImage(named: "saved")),
+            generateVC(vc: BookmarksViewController(), image: UIImage(named: "saved")),
             generateVC(vc: ProfileViewController(),image: UIImage(named: "human")),
 
         ]
