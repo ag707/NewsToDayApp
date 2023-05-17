@@ -123,7 +123,6 @@ class ResultsViewController: UIViewController {
         super.viewDidLoad()
         addView()
         setConstraints()
-        
     }
 //    
 //     func prepareForReuse() {
