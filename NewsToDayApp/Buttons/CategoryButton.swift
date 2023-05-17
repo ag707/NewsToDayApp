@@ -11,22 +11,20 @@ protocol CategoryButtonTapped {
     func tappedFavoriteButton(_ sender: FavoriteButton, recipeID: Int)
     
 }
-
 class CategoryButton: UIButton {
-    private var iconConfiguration: UIImage.SymbolConfiguration!
-    private var defaultColor: UIColor!
     var isFavorite: Bool?
     var categories = ["Covid-19","Sports","Politics","Life","Gaming","Animals","Nature","Food","Art","History"]
     
-    init(iconPointSize: CGFloat = 35, withColor color: UIColor = .mainWhite) {
-        super.init(frame: .zero)
+    init() {
+        super.init(frame: CGRect(x: 0, y: 0, width: 300, height: 200))
+        setTitle(getNextWord(), for: .normal)
+        setTitleColor(.categoriesLabel, for: .normal)
         
-        iconConfiguration = UIImage.SymbolConfiguration(pointSize: iconPointSize, weight: .medium, scale: .medium)
-        setTitle(categories.randomElement(), for: .normal)
-        setTitleColor(UIColor.black, for: .normal)
-        self.defaultColor = color
         tintColor = .black
+        layer.cornerRadius = 16
+        backgroundColor = .categoryButtonColor
         isFavorite = false
+        
     }
     
     required init?(coder: NSCoder) {
@@ -34,17 +32,38 @@ class CategoryButton: UIButton {
     }
     
     func setActive() {
-        setImage(UIImage(systemName: "bookmark.fill", withConfiguration: iconConfiguration), for: .normal)
-        titleLabel?.textColor = .red
+        //        setImage(UIImage(systemName: "bookmark.fill", withConfiguration: iconConfiguration), for: .normal)
+        backgroundColor = .blueButtonColor
+        setTitleColor(UIColor.white, for: .normal)
         isFavorite = true
+        print(isFavorite as Any)
         
     }
     
     func setInactive() {
-        setImage(UIImage(systemName: "bookmark", withConfiguration: iconConfiguration), for: .normal)
-        tintColor = .black
+        //        setImage(UIImage(systemName: "bookmark", withConfiguration: iconConfiguration), for: .normal)
+        backgroundColor = .categoryButtonColor
+        setTitleColor(UIColor.categoriesLabel, for: .normal)
+
         isFavorite = false
+        print(isFavorite as Any)
         
     }
+    
+    func getNextWord() -> String? {
+        let wordArray = categories
+        struct Counter {
+            static var currentIndex = 0
+        }
+        
+        let currentIndex = Counter.currentIndex
+        guard currentIndex < wordArray.count else {
+            return nil
+        }
+        
+        let nextIndex = currentIndex + 1
+        Counter.currentIndex = nextIndex
+        
+        return wordArray[currentIndex]
+    }
 }
-

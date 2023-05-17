@@ -26,7 +26,7 @@ class ResultsViewController: UIViewController {
     
     private lazy var bookMarkButton: FavoriteButton = {
         let button = FavoriteButton(iconPointSize: 21)
-        button.addTarget(self, action: #selector(tappedFavoriteButton), for: .touchUpInside)
+        button.addTarget(self, action: #selector(tappedCategoryButton), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -196,7 +196,7 @@ extension ResultsViewController {
     }
 }
 extension ResultsViewController {
-    @objc func tappedFavoriteButton(_ button: FavoriteButton) {
+    @objc func tappedCategoryButton(_ button: FavoriteButton) {
         if button.isFavorite == false {
             button.setActive()
         } else {
