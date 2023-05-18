@@ -9,51 +9,45 @@ import UIKit
 
 class MainTabBarController: UITabBarController {
     
-//    override func viewDidLayoutSubviews() {
-//        super.viewDidLayoutSubviews()
-//        tabBar.frame.size.height = 75
-//        tabBar.frame.origin.y = view.frame.height - 75
-//    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
-        generateTabBar()
-//        setTabBarAppearance()
+        
+        let vc1 = MainNewsViewController()
+        let vc2 = CategoryViewControllerL()
+        //let vc3 = ()
+        let vc4 = ProfileViewController()
+        
+        vc1.title = "Main News"
+        //        vc2.title = "Category"
+        //        vc3.title = "BookMarks"
+        //        vc4.title = "Profile"
+        
+        //        vc1.navigationItem.largeTitleDisplayMode = .always
+        //        //vc2.navigationItem.largeTitleDisplayMode = .always
+        //        vc3.navigationItem.largeTitleDisplayMode = .always
+        //        vc4.navigationItem.largeTitleDisplayMode = .always
+        
+        let nav1 = UINavigationController(rootViewController: vc1)
+        let nav2 = UINavigationController(rootViewController: vc2)
+        //let nav3 = UINavigationController(rootViewController: vc3)
+        let nav4 = UINavigationController(rootViewController: vc4)
+        
+        nav1.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "house"), tag: 1)
+        nav2.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "category"), tag: 1)
+        //nav3.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "saved"), tag: 1)
+        nav4.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "human"), tag: 1)
+        
+        //        nav1.navigationBar.prefersLargeTitles = true
+        //        nav2.navigationBar.prefersLargeTitles = true
+        //        nav3.navigationBar.prefersLargeTitles = true
+        //        nav4.navigationBar.prefersLargeTitles = true
+        
+        nav1.navigationBar.tintColor = .label
+        nav2.navigationBar.tintColor = .label
+        //nav3.navigationBar.tintColor = .label
+        nav4.navigationBar.tintColor = .label
+        
+        setViewControllers([nav1,nav2,nav4], animated: false)
     }
-    private func generateTabBar () {
-        viewControllers = [
-            generateVC(vc: ResultsViewController(), image: UIImage(named: "house")),
-            generateVC(vc: CategoryViewControllerL(), image: UIImage(named: "category")),
-            generateVC(vc: BookmarksViewController(), image: UIImage(named: "saved")),
-            generateVC(vc: ProfileViewController(),image: UIImage(named: "human")),
-
-        ]
-    }
-    private func generateVC (vc: UIViewController, image: UIImage?) -> UIViewController {
-        vc.tabBarItem.title = title
-        vc.tabBarItem.image = image
-        return vc
-    }
-    
-//    private func setTabBarAppearance () {
-//        let positionOnx: CGFloat = 10
-//        let positionOnY: CGFloat = 14
-//        let width = tabBar.bounds.width - positionOnx * 2
-//        let height = tabBar.bounds.height  + positionOnY * 2
-//
-//        let roundLayer = CAShapeLayer()
-//
-//        let bezierPath = UIBezierPath(roundedRect: CGRect(x: positionOnx, y: tabBar.bounds.minY - positionOnY, width: width, height: height), cornerRadius: height / 2)
-//        roundLayer.path = bezierPath.cgPath
-//
-//        tabBar.layer.insertSublayer(roundLayer, at: 0)
-//
-//        tabBar.itemWidth = width / 5
-//        tabBar.itemPositioning = .centered
-//
-//        roundLayer.fillColor = UIColor.mainWhite.cgColor
-//        tabBar.tintColor = .tabBarItemAccent
-//        tabBar.unselectedItemTintColor = .tabBarItemLight
-//    }
 }
 

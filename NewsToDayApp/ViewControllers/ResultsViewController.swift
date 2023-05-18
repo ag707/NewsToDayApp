@@ -6,6 +6,7 @@
 //
 
 import UIKit
+
 class ResultsViewController: UIViewController {
     
     private lazy var resultImage: UIImageView = {
@@ -123,7 +124,6 @@ class ResultsViewController: UIViewController {
         super.viewDidLoad()
         addView()
         setConstraints()
-        
     }
 //    
 //     func prepareForReuse() {
