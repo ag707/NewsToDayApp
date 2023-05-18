@@ -48,12 +48,19 @@ class TableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(primaryText: String, secondaryText: String, image: UIImage) {
-        secondaryLabel.text = secondaryText
-        primaryLabel.text = primaryText
-        cellImageView.image = image
-    }
+//    func configure(primaryText: String, secondaryText: String, image: UIImage) {
+//        secondaryLabel.text = secondaryText
+//        primaryLabel.text = primaryText
+//        cellImageView.image = image
+//    }
     
+    public func getBookmark() -> JustNewsModelView? {
+        let userDefaults = UserDefaults.standard
+        guard let encodedData = userDefaults.data(forKey: BookmarksKey) else {return nil}
+        let bookmark = try? JSONDecoder.decode(JustNewsModelView.self, from: encodedData)
+        return bookmark
+    }
+
     private func setConstraints() {
         addSubview(stackView)
         addSubview(cellImageView)
