@@ -14,7 +14,7 @@ class MainTabBarController: UITabBarController {
         
         let vc1 = MainNewsViewController()
         let vc2 = CategoryViewControllerL()
-        //let vc3 = ()
+        let vc3 = BookmarksViewController()
         let vc4 = ProfileViewController()
         
         vc1.title = "Main News"
@@ -29,12 +29,12 @@ class MainTabBarController: UITabBarController {
         
         let nav1 = UINavigationController(rootViewController: vc1)
         let nav2 = UINavigationController(rootViewController: vc2)
-        //let nav3 = UINavigationController(rootViewController: vc3)
+        let nav3 = UINavigationController(rootViewController: vc3)
         let nav4 = UINavigationController(rootViewController: vc4)
         
         nav1.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "house"), tag: 1)
         nav2.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "category"), tag: 1)
-        //nav3.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "saved"), tag: 1)
+        nav3.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "saved"), tag: 1)
         nav4.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "human"), tag: 1)
         
         //        nav1.navigationBar.prefersLargeTitles = true
@@ -44,10 +44,10 @@ class MainTabBarController: UITabBarController {
         
         nav1.navigationBar.tintColor = .label
         nav2.navigationBar.tintColor = .label
-        //nav3.navigationBar.tintColor = .label
+        nav3.navigationBar.tintColor = .label
         nav4.navigationBar.tintColor = .label
         
-        setViewControllers([nav1,nav2,nav4], animated: false)
+        setViewControllers([nav1,nav2,nav3,nav4], animated: false)
     }
 }
 

@@ -23,6 +23,8 @@
 		84899C552A14D70F00827CFD /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84899C542A14D70F00827CFD /* UIView+Extensions.swift */; };
 		84899C572A14D74300827CFD /* MainNewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84899C562A14D74300827CFD /* MainNewsViewController.swift */; };
 		84899C592A14D76300827CFD /* SearchResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84899C582A14D76300827CFD /* SearchResultsViewController.swift */; };
+		84DEB8792A1623A5004343D0 /* BookmarksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DEB8782A1623A5004343D0 /* BookmarksViewController.swift */; };
+		84DEB87B2A1623EE004343D0 /* BookmarkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DEB87A2A1623EE004343D0 /* BookmarkCell.swift */; };
 		9516339C2A12C91B00D4168F /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9516339B2A12C91B00D4168F /* ResultsViewController.swift */; };
 		9516339E2A12C96000D4168F /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9516339D2A12C96000D4168F /* ProfileViewController.swift */; };
 		951633A02A12C9F100D4168F /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9516339F2A12C9F100D4168F /* Extensions.swift */; };
@@ -51,6 +53,8 @@
 		84899C542A14D70F00827CFD /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		84899C562A14D74300827CFD /* MainNewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNewsViewController.swift; sourceTree = "<group>"; };
 		84899C582A14D76300827CFD /* SearchResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsViewController.swift; sourceTree = "<group>"; };
+		84DEB8782A1623A5004343D0 /* BookmarksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarksViewController.swift; sourceTree = "<group>"; };
+		84DEB87A2A1623EE004343D0 /* BookmarkCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkCell.swift; sourceTree = "<group>"; };
 		9516339B2A12C91B00D4168F /* ResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsViewController.swift; sourceTree = "<group>"; };
 		9516339D2A12C96000D4168F /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		9516339F2A12C9F100D4168F /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -152,6 +156,7 @@
 				84899C4A2A14D65000827CFD /* CategoryNewsViewModelCollectionViewCell.swift */,
 				84899C4C2A14D66B00827CFD /* RecomendedNewsViewCollectionViewCell.swift */,
 				84899C4E2A14D68E00827CFD /* TitleHeaderCollectionReusableView.swift */,
+				84DEB87A2A1623EE004343D0 /* BookmarkCell.swift */,
 			);
 			path = ViewModelsCells;
 			sourceTree = "<group>";
@@ -208,6 +213,7 @@
 				84899C562A14D74300827CFD /* MainNewsViewController.swift */,
 				84899C582A14D76300827CFD /* SearchResultsViewController.swift */,
 				5B578EE32A0D39D3003AE3C9 /* Terms&Conditions.swift */,
+				84DEB8782A1623A5004343D0 /* BookmarksViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -354,6 +360,7 @@
 				CE66055D2A0A44630072FB01 /* TableViewCell.swift in Sources */,
 				84899C4B2A14D65000827CFD /* CategoryNewsViewModelCollectionViewCell.swift in Sources */,
 				84899C522A14D6E100827CFD /* JustNewsModelView.swift in Sources */,
+				84DEB87B2A1623EE004343D0 /* BookmarkCell.swift in Sources */,
 				84899C442A14D5DA00827CFD /* MainNewsModel.swift in Sources */,
 				951D76A42A13A50400A9BCA5 /* FavoriteButton.swift in Sources */,
 				951633A02A12C9F100D4168F /* Extensions.swift in Sources */,
@@ -364,6 +371,7 @@
 				7C97B98B2A094D0D000693D2 /* SceneDelegate.swift in Sources */,
 				9563D0402A13F69500F07589 /* CategoryButton.swift in Sources */,
 				9563D03E2A13ED7400F07589 /* CategoryViewController.swift in Sources */,
+				84DEB8792A1623A5004343D0 /* BookmarksViewController.swift in Sources */,
 				9516339C2A12C91B00D4168F /* ResultsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

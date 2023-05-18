@@ -1,8 +1,8 @@
 //
-//  ViewController.swift
+//  BookmarksViewController.swift
 //  NewsToDayApp
 //
-//  Created by Yelena Gorelova on 08.05.2023.
+//  Created by Админ on 18.05.2023.
 //
 
 import UIKit
