@@ -8,6 +8,7 @@
 import UIKit
 import ProgressHUD
 
+//MARK: - Screen Sections Enum & TitileHeader String
 enum SectionsVariable {
     case news1(model: [JustNewsModelView])
     case news2(model: [JustNewsModelView])
@@ -24,7 +25,7 @@ enum SectionsVariable {
         }
     }
 }
-
+//MARK: - Main Class
 class MainNewsViewController: UIViewController {
     
     private var sections = [SectionsVariable]()
@@ -82,7 +83,7 @@ class MainNewsViewController: UIViewController {
         collectionView.register(RecomendedNewsViewCollectionViewCell.self, forCellWithReuseIdentifier: RecomendedNewsViewCollectionViewCell.identifier)
         collectionView.register(TitleHeaderCollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: TitleHeaderCollectionReusableView.identifire)
     }
-    
+    //MARK: - Data Fetch Methods
     private func fetchData() {
         
         var mainNews: MainNewsModel?
@@ -148,36 +149,42 @@ class MainNewsViewController: UIViewController {
             self.configureModels(mainNewsResult: freshNews, mainRecNews: recNews)
         }
     }
-    
+    //MARK: - Sections Model Configure Methods
     private func configureModels(mainNewsResult: [NewsResult], mainRecNews: [NewsResult]) {
         
         dataModel = mainNewsResult
         sections.append(.news1(model: mainNewsResult.compactMap({
             return JustNewsModelView(
-                imageURL: URL(string: ""),
-                newsCateg: $0.title,
-                mainNews: "")
+                imageURL: URL(string: $0.urlToImage ?? Constants.stockImage) ,
+                newsCateg: $0.source.name,
+                mainNews: $0.content,
+                autor: $0.author ?? $0.publishedAt,
+                nameState:$0.title)
         })))
         
         sections.append(.news2(model: mainNewsResult.compactMap({
             return JustNewsModelView(
-                imageURL: $0.urlToImage,
-                newsCateg: $0.title,
-                mainNews: $0.content)
+                imageURL: URL(string: $0.urlToImage ?? Constants.stockImage),
+                newsCateg: $0.source.name,
+                mainNews: $0.content,
+                autor: $0.author ?? $0.publishedAt,
+                nameState:$0.title)
             
         })))
         
         sections.append(.news3(model: mainRecNews.compactMap({
             return JustNewsModelView(
-                imageURL: $0.urlToImage,
+                imageURL: URL(string: $0.urlToImage ?? Constants.stockImage),
                 newsCateg: $0.source.name,
-                mainNews: $0.description)
+                mainNews: $0.description,
+                autor: "",
+                nameState: "")
         })))
         
         collectionView.reloadData()
         
     }
-    
+    //MARK: - Create Layout Sections Methods
     private static func createSectionLayout(section: Int) -> NSCollectionLayoutSection {
         let supplementaryView = [
             
@@ -283,7 +290,7 @@ class MainNewsViewController: UIViewController {
     }
     
 }
-
+//MARK: - Main Extensions
 extension MainNewsViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -312,6 +319,24 @@ extension MainNewsViewController: UICollectionViewDelegate, UICollectionViewData
         return header
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let type = sections[indexPath.section]
+        
+        switch type {
+        case .news1(let viewModel):
+            break
+        case .news2(let viewModel):
+            let model = viewModel[indexPath.row]
+            let vc = ResultsViewController()
+            vc.configureResultVc(with: model)
+            navigationController?.pushViewController(vc, animated: true)
+        case .news3(let viewModel):
+            let model = viewModel[indexPath.row]
+            let vc = ResultsViewController()
+            vc.configureResultVc(with: model)
+            navigationController?.pushViewController(vc, animated: true)
+        }
+    }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
@@ -342,10 +367,11 @@ extension MainNewsViewController: UICollectionViewDelegate, UICollectionViewData
         }
     }
 }
-
+//MARK: - Search Delegate Extensions
 extension MainNewsViewController: UISearchResultsUpdating, UISearchBarDelegate {
+    
     func updateSearchResults(for searchController: UISearchController) {
-        ////
+        print(searchController.searchBar.text)
     }
     
     

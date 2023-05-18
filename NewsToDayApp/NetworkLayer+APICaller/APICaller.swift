@@ -15,14 +15,6 @@ class APICaller {
     
     static let shared = APICaller()
     
-    struct Constants {
-        static let baseAPIUrl = "https://newsapi.org/v2/"
-        static let popularPref = "everything?language=en&"
-        static let topPref = "top-headlines/sources?"
-        static let country = "country=us"
-        static let apiKey = "&apiKey=7a38df787ac74fc6acba9dca4350aa8b"
-    }
-    
     //MARK: - HTTP Methods & Errors
     enum HTTPMethod: String {
         case GET

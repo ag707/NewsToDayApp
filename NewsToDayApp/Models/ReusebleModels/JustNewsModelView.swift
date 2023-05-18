@@ -11,4 +11,6 @@ struct JustNewsModelView {
     let imageURL: URL?
     let newsCateg: String
     let mainNews: String
+    let autor: String
+    let nameState: String
 }
