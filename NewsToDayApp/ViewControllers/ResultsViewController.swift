@@ -6,12 +6,14 @@
 //
 
 import UIKit
+import SDWebImage
 
 class ResultsViewController: UIViewController {
     
     private lazy var resultImage: UIImageView = {
        let image = UIImageView()
         image.image = UIImage(named: "resultImage")
+        image.contentMode = .scaleAspectFill
         image.translatesAutoresizingMaskIntoConstraints = false
         return image
     }()
@@ -61,7 +63,11 @@ class ResultsViewController: UIViewController {
     
     private lazy var nameStateLabel: UILabel = {
        let label = UILabel()
-        label.text = "The latest situation in the presidential election"
+        //label.text = "The latest situation in the presidential election"
+        label.layer.shadowOpacity = 1
+        label.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1).cgColor
+        label.layer.shadowOffset = CGSize(width: 5, height: 5)
+        label.layer.shadowRadius = 5
         label.font = UIFont.boldSystemFont(ofSize: 20)
         label.textColor = .white
         label.numberOfLines = 0
@@ -71,7 +77,7 @@ class ResultsViewController: UIViewController {
     
     private lazy var authorLabel: UILabel = {
        let label = UILabel()
-        label.text = "John Doe"
+        //label.text = "John Doe"
         label.font = UIFont.boldSystemFont(ofSize: 20)
         label.textColor = .white
         label.numberOfLines = 0
@@ -100,7 +106,6 @@ class ResultsViewController: UIViewController {
     
     private lazy var textLabel: UITextView = {
        let text = UITextView()
-        text.text = "Leads in individual states may change from one party to another as all the votes are counted. Select a state for detailed results, and select the Senate, House or Governor tabs to view those races.\n\n\nFor more detailed state results click on the States A-Z links at the bottom of this page. Results source: NEP/Edison via Reuters.\n\n\n Leads in individual states may change from one party to another as all the votes are counted. Select a state for detailed results, and select the Senate, House or Governor tabs to view those races. For more detailed state results click on the States A-Z links at the bottom of this page. Results source: NEP/Edison via Reuters."
         text.font = UIFont.systemFont(ofSize: 16)
         text.textColor = .black
         text.textAlignment = .left
@@ -145,6 +150,16 @@ class ResultsViewController: UIViewController {
         view.addSubview(textLabel)
     }
     
+    public func configureResultVc(with model: JustNewsModelView ) {
+        resultImage.sd_setImage(with: model.imageURL ?? URL(string: "https://www.antakigppk.com/wp-content/uploads/2020/05/csm_Corporate-News_final_8c49c960ec.jpg"))
+        textLabel.text = model.mainNews
+        categoryLabel.text = model.newsCateg
+        nameStateLabel.text = model.nameState
+        author.text = model.autor
+        authorLabel.text = model.autor
+        resultLabel.text = model.newsCateg
+    }
+    
 }
 //MARK: - Set Constraints
 extension ResultsViewController {
@@ -153,6 +168,7 @@ extension ResultsViewController {
             resultImage.topAnchor.constraint(equalTo: view.topAnchor),
             resultImage.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             resultImage.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            resultImage.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -500),
             
             backButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 78),
             backButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 26),

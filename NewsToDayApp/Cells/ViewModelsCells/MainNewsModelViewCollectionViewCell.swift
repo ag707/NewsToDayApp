@@ -76,9 +76,10 @@ class MainNewsModelViewCollectionViewCell: UICollectionViewCell {
     }
     
     func configureCells(with: JustNewsModelView) {
-        imageNewsCover.sd_setImage(with: with.imageURL ?? URL(string: "https://www.antakigppk.com/wp-content/uploads/2020/05/csm_Corporate-News_final_8c49c960ec.jpg"))
+        imageNewsCover.sd_setImage(with: with.imageURL ?? URL(string: Constants.stockImage) )
         //labelNews.text = with.newsCateg
-        categoryNewsLbl.text = with.newsCateg
+        categoryNewsLbl.text = with.nameState
+        labelNews.text = with.newsCateg
     }
     
     
