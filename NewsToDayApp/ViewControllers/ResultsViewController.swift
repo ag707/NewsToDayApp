@@ -161,6 +161,12 @@ class ResultsViewController: UIViewController {
         resultLabel.text = model.newsCateg
     }
     
+    public func saveBookmark(bookmark: JustNewsModelView) {
+        let userDefaults = UserDefaults.standard
+        let encodedData = try? JSONEncoder().encode(bookmark)
+        userDefaults.set(encodedData, forKey: BookmarksKey)
+    }
+    
 }
 //MARK: - Set Constraints
 extension ResultsViewController {
@@ -216,6 +222,8 @@ extension ResultsViewController {
     @objc func tappedFavoriteButton(_ button: FavoriteButton) {
         if button.isFavorite == false {
             button.setActive()
+            let bookmark = JustNewsModelView(imageURL: imageURL, newsCateg: newsCateg, mainNews: )
+            saveBookmark(bookmark: bookmark)
         } else {
             button.setInactive()
         }
