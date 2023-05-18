@@ -312,6 +312,7 @@ extension MainNewsViewController: UICollectionViewDelegate, UICollectionViewData
         return header
     }
     
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let type = sections[indexPath.section]
