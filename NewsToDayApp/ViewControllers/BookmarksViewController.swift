@@ -31,7 +31,7 @@ class BookmarksViewController: UIViewController {
         return label
     }()
     
-    private lazy var tableView: UITableView = {
+    let tableView: UITableView = {
         let tableView = UITableView()
         tableView.register(TableViewCell.self, forCellReuseIdentifier: "cellID")
         tableView.separatorStyle = .none
@@ -98,6 +98,7 @@ class BookmarksViewController: UIViewController {
         addSubviews()
         setConstraints()
         checkIfEmpty()
+        tableView.reloadData()
     }
     
     private func checkIfEmpty() {
@@ -144,8 +145,11 @@ extension BookmarksViewController: UITableViewDataSource, UITableViewDelegate {
         // после подключения сетевого слоя - доставать атрибуты модельки Bookmarks
         //        let type = bookmarks[indexPath.row]
         //        let primaryText = type.primaryText
+        cell.textLabel?.text = x[indexPath.row]
+
+//        tableView.reloadData()
 //        cell.configure(primaryText: "test", secondaryText: "test", image: UIImage(systemName: "xmark.circle") ?? UIImage())
-        guard let savedBookmark = cell.getBookmark() else {return}
+//        guard let savedBookmark = cell.getBookmark() else {return}
         return cell
     }
     

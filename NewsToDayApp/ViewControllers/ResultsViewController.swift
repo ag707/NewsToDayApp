@@ -8,7 +8,10 @@
 import UIKit
 import SDWebImage
 
+var x = ["1","2"]
+
 class ResultsViewController: UIViewController {
+
     
     private lazy var resultImage: UIImageView = {
        let image = UIImageView()
@@ -28,7 +31,7 @@ class ResultsViewController: UIViewController {
 //    }()
     
     private lazy var bookMarkButton: FavoriteButton = {
-        let button = FavoriteButton(iconPointSize: 21)
+        let button = FavoriteButton()
         button.addTarget(self, action: #selector(tappedFavoriteButton), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
@@ -161,11 +164,11 @@ class ResultsViewController: UIViewController {
         resultLabel.text = model.newsCateg
     }
     
-    public func saveBookmark(bookmark: JustNewsModelView) {
-        let userDefaults = UserDefaults.standard
-        let encodedData = try? JSONEncoder().encode(bookmark)
-        userDefaults.set(encodedData, forKey: BookmarksKey)
-    }
+//    public func saveBookmark(bookmark: JustNewsModelView) {
+//        let userDefaults = UserDefaults.standard
+//        let encodedData = try? JSONEncoder().encode(bookmark)
+//        userDefaults.set(encodedData, forKey: BookmarksKey)
+//    }
     
 }
 //MARK: - Set Constraints
@@ -180,7 +183,7 @@ extension ResultsViewController {
 //            backButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 78),
 //            backButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 26),
             
-            bookMarkButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 74),
+            bookMarkButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 94),
             bookMarkButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
             
             shareButton.topAnchor.constraint(equalTo: bookMarkButton.bottomAnchor, constant: 29),
@@ -222,8 +225,11 @@ extension ResultsViewController {
     @objc func tappedFavoriteButton(_ button: FavoriteButton) {
         if button.isFavorite == false {
             button.setActive()
-            let bookmark = JustNewsModelView(imageURL: imageURL, newsCateg: newsCateg, mainNews: )
-            saveBookmark(bookmark: bookmark)
+            x.append(author.text ?? "3")
+            print(x)
+            
+//            let bookmark = JustNewsModelView(imageURL: imageURL, newsCateg: newsCateg, mainNews: )
+//            saveBookmark(bookmark: bookmark)
         } else {
             button.setInactive()
         }

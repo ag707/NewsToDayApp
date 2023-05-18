@@ -8,7 +8,7 @@
 import UIKit
 
 protocol CategoryButtonTapped {
-    func tappedFavoriteButton(_ sender: FavoriteButton, recipeID: Int)
+
     
 }
 class CategoryButton: UIButton {

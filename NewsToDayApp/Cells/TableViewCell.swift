@@ -54,12 +54,12 @@ class TableViewCell: UITableViewCell {
 //        cellImageView.image = image
 //    }
     
-    public func getBookmark() -> JustNewsModelView? {
-        let userDefaults = UserDefaults.standard
-        guard let encodedData = userDefaults.data(forKey: BookmarksKey) else {return nil}
-        let bookmark = try? JSONDecoder.decode(JustNewsModelView.self, from: encodedData)
-        return bookmark
-    }
+//    public func getBookmark() -> JustNewsModelView? {
+//        let userDefaults = UserDefaults.standard
+//        guard let encodedData = userDefaults.data(forKey: BookmarksKey) else {return nil}
+//        let bookmark = try? JSONDecoder.decode(JustNewsModelView.self, from: encodedData)
+//        return bookmark
+//    }
 
     private func setConstraints() {
         addSubview(stackView)
