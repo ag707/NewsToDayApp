@@ -7,23 +7,19 @@
 
 import UIKit
 
-protocol FavorieteButtonTapped {
+protocol FavoriteButtonDelegate: AnyObject {
     func tappedFavoriteButton(_ sender: FavoriteButton, recipeID: Int)
-
 }
 
 class FavoriteButton: UIButton {
-    private var iconConfiguration: UIImage.SymbolConfiguration!
-    private var defaultColor: UIColor!
+
     var isFavorite: Bool?
     
-    init(iconPointSize: CGFloat = 35, withColor color: UIColor = .mainWhite) {
-        super.init(frame: .zero)
-        
-        iconConfiguration = UIImage.SymbolConfiguration(pointSize: iconPointSize, weight: .medium, scale: .medium)
-        let image = UIImage(systemName: "bookmark", withConfiguration: iconConfiguration)
+    init() {
+        super.init(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
+    
+        let image = UIImage(systemName: "bookmark")
         setImage(image, for: .normal)
-        self.defaultColor = color
         tintColor = .white
         isFavorite = false
     }
@@ -33,16 +29,17 @@ class FavoriteButton: UIButton {
     }
     
     func setActive() {
-        setImage(UIImage(systemName: "bookmark.fill", withConfiguration: iconConfiguration), for: .normal)
-        tintColor = .white
+        setImage(UIImage(systemName: "bookmark.fill"), for: .normal)
         isFavorite = true
+
+        print("1")
 
     }
     
     func setInactive() {
-        setImage(UIImage(systemName: "bookmark", withConfiguration: iconConfiguration), for: .normal)
-        tintColor = .white
+        setImage(UIImage(systemName: "bookmark"), for: .normal)
         isFavorite = false
+        print("2")
 
     }
 }

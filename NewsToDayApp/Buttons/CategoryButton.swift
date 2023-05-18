@@ -8,7 +8,7 @@
 import UIKit
 
 protocol CategoryButtonTapped {
-    func tappedFavoriteButton(_ sender: FavoriteButton, recipeID: Int)
+
     
 }
 class CategoryButton: UIButton {
@@ -32,7 +32,7 @@ class CategoryButton: UIButton {
     }
     
     func setActive() {
-        //        setImage(UIImage(systemName: "bookmark.fill", withConfiguration: iconConfiguration), for: .normal)
+        
         backgroundColor = .blueButtonColor
         setTitleColor(UIColor.white, for: .normal)
         isFavorite = true
@@ -41,7 +41,7 @@ class CategoryButton: UIButton {
     }
     
     func setInactive() {
-        //        setImage(UIImage(systemName: "bookmark", withConfiguration: iconConfiguration), for: .normal)
+
         backgroundColor = .categoryButtonColor
         setTitleColor(UIColor.categoriesLabel, for: .normal)
 
