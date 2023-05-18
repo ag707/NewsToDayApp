@@ -88,7 +88,7 @@ class RecomendedNewsViewCollectionViewCell: UICollectionViewCell {
     func configure(with model: JustNewsModelView ) {
         newsNameLbl.text = model.mainNews
         newsSourceLbl.text = model.newsCateg
-        newsCoverImage.sd_setImage(with: model.imageURL ?? URL(string: "https://www.antakigppk.com/wp-content/uploads/2020/05/csm_Corporate-News_final_8c49c960ec.jpg"))
+        newsCoverImage.sd_setImage(with: model.imageURL ?? URL(string: Constants.stockImage))
     }
 }
 

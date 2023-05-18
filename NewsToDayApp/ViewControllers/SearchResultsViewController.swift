@@ -11,4 +11,19 @@ import UIKit
 
 class SearchResultsViewController: UIViewController {
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setBlurView()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+    }
+    
+    private  func setBlurView() {
+        let blurView = UIVisualEffectView()
+        blurView.frame = view.frame
+        blurView.effect = UIBlurEffect(style: .light)
+        view.addSubview(blurView)
+    }
 }
