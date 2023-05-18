@@ -10,7 +10,7 @@ import UIKit
 class BookmarksViewController: UIViewController {
     
     // заглушка - при пустом значении показывается текст о добавлении закладок. При наличии значении - показывает ячейки
-    private let bookmarks: [Int] = []
+    private let bookmarks: [Int] = [1,2]
     
     private let headerLabel: UILabel = {
         let label = UILabel()

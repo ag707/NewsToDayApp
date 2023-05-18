@@ -36,6 +36,7 @@ class FavoriteButton: UIButton {
         setImage(UIImage(systemName: "bookmark.fill", withConfiguration: iconConfiguration), for: .normal)
         tintColor = .white
         isFavorite = true
+        print("1")
 
     }
     
@@ -43,6 +44,7 @@ class FavoriteButton: UIButton {
         setImage(UIImage(systemName: "bookmark", withConfiguration: iconConfiguration), for: .normal)
         tintColor = .white
         isFavorite = false
+        print("2")
 
     }
 }
