@@ -8,7 +8,7 @@
 import UIKit
 import SDWebImage
 
-var x = ["1","2"]
+var x = [String]()
 
 class ResultsViewController: UIViewController {
 
@@ -225,8 +225,10 @@ extension ResultsViewController {
     @objc func tappedFavoriteButton(_ button: FavoriteButton) {
         if button.isFavorite == false {
             button.setActive()
-            x.append(author.text ?? "3")
-            print(x)
+            x.append(authorLabel.text ?? "3")
+            
+            print(x as Any)
+            print(author.text ?? "3")
             
 //            let bookmark = JustNewsModelView(imageURL: imageURL, newsCateg: newsCateg, mainNews: )
 //            saveBookmark(bookmark: bookmark)

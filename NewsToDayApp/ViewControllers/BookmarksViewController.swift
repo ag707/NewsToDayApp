@@ -9,7 +9,7 @@ import UIKit
 
 class BookmarksViewController: UIViewController {
     
-    // заглушка - при пустом значении показывается текст о добавлении закладок. При наличии значении - показывает ячейки
+
     private let bookmarks: [Int] = [1,2]
     
     let BookmarksKey = "BookmarksKey"
@@ -137,20 +137,21 @@ class BookmarksViewController: UIViewController {
 
 extension BookmarksViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        x.count
+        if x.isEmpty {
+            return 1
+        } else {
+            return x.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "cellID") as? TableViewCell else { return UITableViewCell() }
-        // после подключения сетевого слоя - доставать атрибуты модельки Bookmarks
-        //        let type = bookmarks[indexPath.row]
-        //        let primaryText = type.primaryText
-        cell.textLabel?.text = x[indexPath.row]
-
-//        tableView.reloadData()
-//        cell.configure(primaryText: "test", secondaryText: "test", image: UIImage(systemName: "xmark.circle") ?? UIImage())
-//        guard let savedBookmark = cell.getBookmark() else {return}
-        return cell
+        if x.isEmpty {
+         cell.textLabel?.text = " "
+            return cell
+        }
+            cell.textLabel?.text = x[indexPath.row]
+            return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
