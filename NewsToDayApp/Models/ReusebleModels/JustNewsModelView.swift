@@ -13,4 +13,5 @@ struct JustNewsModelView {
     let mainNews: String
     let autor: String
     let nameState: String
+    let desc: String
 }

@@ -64,7 +64,7 @@ class MainNewsModelViewCollectionViewCell: UICollectionViewCell {
         super.layoutSubviews()
         
         imageNewsCover.frame = contentView.bounds
-        categoryNewsLbl.frame = CGRect(x: 10, y: 50 , width: contentView.width , height: contentView.height)
+        categoryNewsLbl.frame = CGRect(x: 10, y: 50 , width: contentView.width-10 , height: contentView.height)
         
     }
     
@@ -77,7 +77,6 @@ class MainNewsModelViewCollectionViewCell: UICollectionViewCell {
     
     func configureCells(with: JustNewsModelView) {
         imageNewsCover.sd_setImage(with: with.imageURL ?? URL(string: Constants.stockImage) )
-        //labelNews.text = with.newsCateg
         categoryNewsLbl.text = with.nameState
         labelNews.text = with.newsCateg
     }

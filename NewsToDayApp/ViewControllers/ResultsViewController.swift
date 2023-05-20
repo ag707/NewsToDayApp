@@ -150,8 +150,8 @@ class ResultsViewController: UIViewController {
         view.addSubview(textLabel)
     }
     
-    public func configureResultVc(with model: JustNewsModelView ) {
-        resultImage.sd_setImage(with: model.imageURL ?? URL(string: "https://www.antakigppk.com/wp-content/uploads/2020/05/csm_Corporate-News_final_8c49c960ec.jpg"))
+    public func configureResultVc(with model: JustNewsModelView) {
+        resultImage.sd_setImage(with: model.imageURL ?? URL(string: Constants.stockImage))
         textLabel.text = model.mainNews
         categoryLabel.text = model.newsCateg
         nameStateLabel.text = model.nameState

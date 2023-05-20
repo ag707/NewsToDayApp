@@ -74,5 +74,25 @@ class APICaller {
         }
     }
     
+    //MARK: - Create Search Fetching Methods
+    public func fetchSearchNews(request query: String ,comletion: @escaping(Result<MainNewsModel,Error>) -> Void) {
+        createRequest(with: URL(string: Constants.baseAPIUrl + Constants.popularPref + "q=\(query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed ) ?? "")" + Constants.apiKey) , type: .GET) { request in
+            let task = URLSession.shared.dataTask(with: request) { data, _, error in
+                guard let data = data,error == nil else {
+                    comletion(.failure(APIError.faileedToGEtData))
+                    return
+                }
+                do {
+                    let result = try JSONDecoder().decode(MainNewsModel.self, from: data)
+                    //JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed)
+                    comletion(.success(result))
+                    //print(result)
+                } catch {
+                    comletion(.failure(error))
+                }
+            }
+            task.resume()
+        }
+    }
     
 }

@@ -23,12 +23,13 @@
 		84899C552A14D70F00827CFD /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84899C542A14D70F00827CFD /* UIView+Extensions.swift */; };
 		84899C572A14D74300827CFD /* MainNewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84899C562A14D74300827CFD /* MainNewsViewController.swift */; };
 		84899C592A14D76300827CFD /* SearchResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84899C582A14D76300827CFD /* SearchResultsViewController.swift */; };
+		84ADBB622A179D0900C946FD /* SearchResultDefaultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84ADBB612A179D0900C946FD /* SearchResultDefaultTableViewCell.swift */; };
 		84B1DB022A163387007993BD /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B1DB012A163387007993BD /* Constants.swift */; };
 		84DEB8792A1623A5004343D0 /* BookmarksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DEB8782A1623A5004343D0 /* BookmarksViewController.swift */; };
 		84DEB87B2A1623EE004343D0 /* BookmarkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DEB87A2A1623EE004343D0 /* BookmarkCell.swift */; };
 		9516339C2A12C91B00D4168F /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9516339B2A12C91B00D4168F /* ResultsViewController.swift */; };
 		9516339E2A12C96000D4168F /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9516339D2A12C96000D4168F /* ProfileViewController.swift */; };
-		951633A02A12C9F100D4168F /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9516339F2A12C9F100D4168F /* Extensions.swift */; };
+		951633A02A12C9F100D4168F /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9516339F2A12C9F100D4168F /* UIColor+Extensions.swift */; };
 		951D76A42A13A50400A9BCA5 /* FavoriteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951D76A32A13A50400A9BCA5 /* FavoriteButton.swift */; };
 		9563D03E2A13ED7400F07589 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9563D03D2A13ED7400F07589 /* CategoryViewController.swift */; };
 		9563D0402A13F69500F07589 /* CategoryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9563D03F2A13F69500F07589 /* CategoryButton.swift */; };
@@ -54,12 +55,13 @@
 		84899C542A14D70F00827CFD /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		84899C562A14D74300827CFD /* MainNewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNewsViewController.swift; sourceTree = "<group>"; };
 		84899C582A14D76300827CFD /* SearchResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsViewController.swift; sourceTree = "<group>"; };
+		84ADBB612A179D0900C946FD /* SearchResultDefaultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultDefaultTableViewCell.swift; sourceTree = "<group>"; };
 		84B1DB012A163387007993BD /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		84DEB8782A1623A5004343D0 /* BookmarksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarksViewController.swift; sourceTree = "<group>"; };
 		84DEB87A2A1623EE004343D0 /* BookmarkCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkCell.swift; sourceTree = "<group>"; };
 		9516339B2A12C91B00D4168F /* ResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsViewController.swift; sourceTree = "<group>"; };
 		9516339D2A12C96000D4168F /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
-		9516339F2A12C9F100D4168F /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		9516339F2A12C9F100D4168F /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
 		951D76A32A13A50400A9BCA5 /* FavoriteButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteButton.swift; sourceTree = "<group>"; };
 		9563D03D2A13ED7400F07589 /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
 		9563D03F2A13F69500F07589 /* CategoryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryButton.swift; sourceTree = "<group>"; };
@@ -159,6 +161,7 @@
 				84899C4C2A14D66B00827CFD /* RecomendedNewsViewCollectionViewCell.swift */,
 				84899C4E2A14D68E00827CFD /* TitleHeaderCollectionReusableView.swift */,
 				84DEB87A2A1623EE004343D0 /* BookmarkCell.swift */,
+				84ADBB612A179D0900C946FD /* SearchResultDefaultTableViewCell.swift */,
 			);
 			path = ViewModelsCells;
 			sourceTree = "<group>";
@@ -174,7 +177,7 @@
 		84899C532A14D6FA00827CFD /* Extensions+Constants */ = {
 			isa = PBXGroup;
 			children = (
-				9516339F2A12C9F100D4168F /* Extensions.swift */,
+				9516339F2A12C9F100D4168F /* UIColor+Extensions.swift */,
 				84899C542A14D70F00827CFD /* UIView+Extensions.swift */,
 				84B1DB012A163387007993BD /* Constants.swift */,
 			);
@@ -356,6 +359,7 @@
 				84899C572A14D74300827CFD /* MainNewsViewController.swift in Sources */,
 				84899C552A14D70F00827CFD /* UIView+Extensions.swift in Sources */,
 				84899C4D2A14D66B00827CFD /* RecomendedNewsViewCollectionViewCell.swift in Sources */,
+				84ADBB622A179D0900C946FD /* SearchResultDefaultTableViewCell.swift in Sources */,
 				84899C462A14D5F200827CFD /* TopHeadlineNewsModel.swift in Sources */,
 				5B578EE42A0D39D3003AE3C9 /* Terms&Conditions.swift in Sources */,
 				84899C412A14D58A00827CFD /* APICaller.swift in Sources */,
@@ -367,7 +371,7 @@
 				84DEB87B2A1623EE004343D0 /* BookmarkCell.swift in Sources */,
 				84899C442A14D5DA00827CFD /* MainNewsModel.swift in Sources */,
 				951D76A42A13A50400A9BCA5 /* FavoriteButton.swift in Sources */,
-				951633A02A12C9F100D4168F /* Extensions.swift in Sources */,
+				951633A02A12C9F100D4168F /* UIColor+Extensions.swift in Sources */,
 				84899C492A14D63700827CFD /* MainNewsModelViewCollectionViewCell.swift in Sources */,
 				7C97B9892A094D0D000693D2 /* AppDelegate.swift in Sources */,
 				9516339E2A12C96000D4168F /* ProfileViewController.swift in Sources */,
@@ -505,7 +509,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = DQGB7M9JG9;
+				DEVELOPMENT_TEAM = 8V8QBXH95P;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NewsToDayApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -533,7 +537,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = DQGB7M9JG9;
+				DEVELOPMENT_TEAM = 8V8QBXH95P;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NewsToDayApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
