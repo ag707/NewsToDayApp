@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct JustNewsModelView {
+struct JustReuseNewsModelView {
     let imageURL: URL?
     let newsCateg: String
     let mainNews: String

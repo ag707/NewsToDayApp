@@ -17,6 +17,13 @@ class SearchResultDefaultTableViewCell: UITableViewCell {
         return label
     }()
     
+    private let autorLabel: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 1
+        label.font = UIFont.systemFont(ofSize: 18, weight: .ultraLight)
+        return label
+    }()
+    
     private let imageCover: UIImageView = {
         let image = UIImageView()
         image.contentMode = .scaleAspectFill
@@ -28,6 +35,7 @@ class SearchResultDefaultTableViewCell: UITableViewCell {
         
         contentView.addSubview(label)
         contentView.addSubview(imageCover)
+        contentView.addSubview(autorLabel)
         
         contentView.backgroundColor = .clear
         contentView.clipsToBounds = true
@@ -53,7 +61,14 @@ class SearchResultDefaultTableViewCell: UITableViewCell {
         imageCover.layer.masksToBounds = true
         label.frame = CGRect(
             x: imageCover.right+10,
-            y: 0, width: contentView.width-imageCover.right-15,
+            y: -20,
+            width: contentView.width-imageCover.right-15,
+            height: contentView.height)
+        
+        autorLabel.frame = CGRect(
+            x: imageCover.right+10,
+            y: 20,
+            width: contentView.width-imageCover.right-15,
             height: contentView.height)
     }
     
@@ -63,9 +78,10 @@ class SearchResultDefaultTableViewCell: UITableViewCell {
         label.text = nil
     }
     
-    public func configure(_ with: NewsResult) {
-        imageCover.sd_setImage(with: URL(string: with.urlToImage ?? Constants.stockImage))
-        label.text = with.description
+    public func configure(_ with: JustReuseNewsModelView) {
+        imageCover.sd_setImage(with: with.imageURL)
+        label.text = with.desc
+        autorLabel.text = with.autor
     }
 
 }

@@ -75,7 +75,7 @@ class MainNewsModelViewCollectionViewCell: UICollectionViewCell {
         categoryNewsLbl.text = nil
     }
     
-    func configureCells(with: JustNewsModelView) {
+    func configureCells(with: JustReuseNewsModelView) {
         imageNewsCover.sd_setImage(with: with.imageURL ?? URL(string: Constants.stockImage) )
         categoryNewsLbl.text = with.nameState
         labelNews.text = with.newsCateg

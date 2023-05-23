@@ -10,9 +10,9 @@ import ProgressHUD
 
 //MARK: - Screen Sections Enum & TitileHeader String
 enum SectionsVariable {
-    case news1(model: [JustNewsModelView])
-    case news2(model: [JustNewsModelView])
-    case news3(model: [JustNewsModelView])
+    case news1(model: [JustReuseNewsModelView])
+    case news2(model: [JustReuseNewsModelView])
+    case news3(model: [JustReuseNewsModelView])
     
     var title: String {
         switch self {
@@ -157,7 +157,7 @@ class MainNewsViewController: UIViewController {
         
         dataModel = mainNewsResult
         sections.append(.news1(model: mainNewsResult.compactMap({
-            return JustNewsModelView(
+            return JustReuseNewsModelView(
                 imageURL: URL(string: $0.urlToImage ?? Constants.stockImage) ,
                 newsCateg: $0.source.name,
                 mainNews: $0.content,
@@ -167,7 +167,7 @@ class MainNewsViewController: UIViewController {
         })))
         
         sections.append(.news2(model: mainNewsResult.compactMap({
-            return JustNewsModelView(
+            return JustReuseNewsModelView(
                 imageURL: URL(string: $0.urlToImage ?? Constants.stockImage),
                 newsCateg: $0.source.name,
                 mainNews: $0.content,
@@ -178,7 +178,7 @@ class MainNewsViewController: UIViewController {
         })))
         
         sections.append(.news3(model: mainRecNews.compactMap({
-            return JustNewsModelView(
+            return JustReuseNewsModelView(
                 imageURL: URL(string: $0.urlToImage ?? Constants.stockImage),
                 newsCateg: $0.source.name,
                 mainNews: $0.description,

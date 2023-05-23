@@ -85,7 +85,7 @@ class RecomendedNewsViewCollectionViewCell: UICollectionViewCell {
         newsCoverImage.image = nil
     }
     
-    func configure(with model: JustNewsModelView ) {
+    func configure(with model: JustReuseNewsModelView ) {
         newsNameLbl.text = model.desc
         newsSourceLbl.text = model.newsCateg
         newsCoverImage.sd_setImage(with: model.imageURL ?? URL(string: Constants.stockImage))

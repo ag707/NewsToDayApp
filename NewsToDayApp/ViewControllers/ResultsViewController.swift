@@ -13,18 +13,8 @@ class ResultsViewController: UIViewController {
     private lazy var resultImage: UIImageView = {
        let image = UIImageView()
         image.image = UIImage(named: "resultImage")
-        image.contentMode = .scaleAspectFill
         image.translatesAutoresizingMaskIntoConstraints = false
         return image
-    }()
-    
-    private lazy var backButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setImage(UIImage(systemName: "arrow.backward"), for: .normal)
-        button.tintColor = .white
-        button.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
     }()
     
     private lazy var bookMarkButton: FavoriteButton = {
@@ -140,7 +130,6 @@ class ResultsViewController: UIViewController {
         view.addSubview(resultImage)
         view.addSubview(shareButton)
         view.addSubview(bookMarkButton)
-        view.addSubview(backButton)
         view.addSubview(categoryView)
         view.addSubview(categoryLabel)
         view.addSubview(nameStateLabel)
@@ -150,7 +139,9 @@ class ResultsViewController: UIViewController {
         view.addSubview(textLabel)
     }
     
-    public func configureResultVc(with model: JustNewsModelView) {
+    
+    
+    public func configureResultVc(with model: JustReuseNewsModelView) {
         resultImage.sd_setImage(with: model.imageURL ?? URL(string: Constants.stockImage))
         textLabel.text = model.mainNews
         categoryLabel.text = model.newsCateg
@@ -169,9 +160,6 @@ extension ResultsViewController {
             resultImage.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             resultImage.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             resultImage.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -500),
-            
-            backButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 78),
-            backButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 26),
             
             bookMarkButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 74),
             bookMarkButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),

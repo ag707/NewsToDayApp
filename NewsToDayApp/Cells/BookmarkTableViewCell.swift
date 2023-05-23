@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TableViewCell: UITableViewCell {
+class BookmarkTableViewCell: UITableViewCell {
     
     private let cellImageView: UIImageView = {
         let imageView = UIImageView()
