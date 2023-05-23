@@ -48,7 +48,7 @@ class SearchResultsViewController: UIViewController {
         
         tableView.isHidden = searchBarResult.isEmpty
         tableView.reloadData()
-        
+        bucket.removeAll()
         guard let unwrap = searchBarResult.first?.articles else {return}
         bucket.append(contentsOf: unwrap.compactMap({
             return JustReuseNewsModelView(
@@ -57,7 +57,9 @@ class SearchResultsViewController: UIViewController {
                 mainNews: $0.content,
                 autor: $0.author ?? $0.publishedAt,
                 nameState:$0.title,
-                desc: $0.description)
+                desc: $0.description,
+                url: $0.url
+            )
         }))
     }
 }
