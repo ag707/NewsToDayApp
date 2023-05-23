@@ -10,9 +10,12 @@ import SDWebImage
 
 class ResultsViewController: UIViewController {
     
+    var newsBucket = [JustReuseNewsModelView]()
+    
     private lazy var resultImage: UIImageView = {
        let image = UIImageView()
         image.image = UIImage(named: "resultImage")
+        image.contentMode = .scaleAspectFit
         image.translatesAutoresizingMaskIntoConstraints = false
         return image
     }()
@@ -45,21 +48,20 @@ class ResultsViewController: UIViewController {
     private lazy var categoryLabel: UILabel = {
        let label = UILabel()
         label.text = "Politics"
-        label.font = UIFont.systemFont(ofSize: 12)
-        label.textColor = .white
+        label.font = .systemFont(ofSize: 12, weight: .regular)
+        //label.textColor = .white
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
     private lazy var nameStateLabel: UILabel = {
        let label = UILabel()
-        //label.text = "The latest situation in the presidential election"
         label.layer.shadowOpacity = 1
         label.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1).cgColor
         label.layer.shadowOffset = CGSize(width: 5, height: 5)
         label.layer.shadowRadius = 5
-        label.font = UIFont.boldSystemFont(ofSize: 20)
-        label.textColor = .white
+        label.font = .systemFont(ofSize: 20, weight: .semibold)
+        //label.textColor = .white
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -67,9 +69,8 @@ class ResultsViewController: UIViewController {
     
     private lazy var authorLabel: UILabel = {
        let label = UILabel()
-        //label.text = "John Doe"
-        label.font = UIFont.boldSystemFont(ofSize: 20)
-        label.textColor = .white
+        label.font = .systemFont(ofSize: 20, weight: .semibold)
+        //label.textColor = .white
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -78,7 +79,7 @@ class ResultsViewController: UIViewController {
     private lazy var author: UILabel = {
        let label = UILabel()
         label.text = "Author"
-        label.font = UIFont.systemFont(ofSize: 12)
+        label.font = .systemFont(ofSize: 12, weight: .regular)
         label.textColor = #colorLiteral(red: 0.6745098039, green: 0.6862745098, blue: 0.7647058824, alpha: 1)
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -88,16 +89,16 @@ class ResultsViewController: UIViewController {
     private lazy var resultLabel: UILabel = {
        let label = UILabel()
         label.text = "Result"
-        label.font = UIFont.boldSystemFont(ofSize: 20)
-        label.textColor = .black
+        label.font = .systemFont(ofSize: 20, weight: .regular)
+        //label.textColor = .black
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
     private lazy var textLabel: UITextView = {
        let text = UITextView()
-        text.font = UIFont.systemFont(ofSize: 16)
-        text.textColor = .black
+        text.font = .systemFont(ofSize: 15, weight: .regular)
+        //text.textColor = .black
         text.textAlignment = .left
         text.backgroundColor = .clear
         text.textAlignment = .justified
@@ -105,18 +106,23 @@ class ResultsViewController: UIViewController {
         text.translatesAutoresizingMaskIntoConstraints = false
         return text
     }()
-    
-    @objc func backButtonTapped () {
-            print("back")
-    }
-    
+        
     @objc func shareButtonTapped () {
-        print("share")
-
+        guard let url = URL(string: newsBucket.first?.url  ?? "") else {
+            return
+        }
+        print(url)
+        let vc = UIActivityViewController(
+            activityItems: [url],
+            applicationActivities: [])
+        
+        vc.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
+        present(vc, animated: true)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //setBlurView()
         addView()
         setConstraints()
     }
@@ -125,8 +131,16 @@ class ResultsViewController: UIViewController {
 //        bookMarkButton.setInactive()
 //    }
     
+    private  func setBlurView() {
+        let blurView = UIVisualEffectView()
+        blurView.frame = view.bounds
+        blurView.effect = UIBlurEffect(style: .light)
+        view.addSubview(blurView)
+        blurView.contentView.addSubview(textLabel)
+    }
+    
     private func addView () {
-        view.backgroundColor = .white
+        view.backgroundColor = .systemBackground
         view.addSubview(resultImage)
         view.addSubview(shareButton)
         view.addSubview(bookMarkButton)
@@ -142,6 +156,7 @@ class ResultsViewController: UIViewController {
     
     
     public func configureResultVc(with model: JustReuseNewsModelView) {
+        newsBucket = [model]
         resultImage.sd_setImage(with: model.imageURL ?? URL(string: Constants.stockImage))
         textLabel.text = model.mainNews
         categoryLabel.text = model.newsCateg
@@ -156,9 +171,9 @@ class ResultsViewController: UIViewController {
 extension ResultsViewController {
     private func setConstraints () {
         NSLayoutConstraint.activate([
-            resultImage.topAnchor.constraint(equalTo: view.topAnchor),
-            resultImage.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            resultImage.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            resultImage.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            resultImage.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
+            resultImage.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
             resultImage.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -500),
             
             bookMarkButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 74),
@@ -199,8 +214,13 @@ extension ResultsViewController {
         ])
     }
 }
-extension ResultsViewController {
+extension ResultsViewController: FavorieteButtonTapped {
+    func tappedFavoriteButton(_ sender: FavoriteButton) {
+        print("erer")
+    }
+    
     @objc func tappedCategoryButton(_ button: FavoriteButton) {
+        button.bookMarkTapped()
         if button.isFavorite == false {
             button.setActive()
         } else {

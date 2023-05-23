@@ -35,8 +35,8 @@ class MainNewsModelViewCollectionViewCell: UICollectionViewCell {
         label.textColor = .white
         label.layer.shadowOpacity = 1
         label.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1).cgColor
-        label.layer.shadowOffset = CGSize(width: 5, height: 5)
-        label.layer.shadowRadius = 5
+        label.layer.shadowOffset = CGSize(width: 0, height: -5)
+        label.layer.shadowRadius = 3
         label.layer.masksToBounds = false
         label.contentMode = .scaleAspectFill
         return label
@@ -52,8 +52,14 @@ class MainNewsModelViewCollectionViewCell: UICollectionViewCell {
         contentView.addSubview(categoryNewsLbl)
         
         contentView.clipsToBounds = true
-        contentView.layer.borderColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1).cgColor
-        contentView.layer.borderWidth = 0.1
+//        contentView.layer.borderColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1).cgColor
+//        contentView.layer.borderWidth = 0.01
+        contentView.layer.shadowOpacity = 5
+        contentView.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3).cgColor
+        contentView.layer.shadowOffset = CGSize(width: -10, height: 0)
+        contentView.layer.shadowRadius = 3
+        contentView.layer.masksToBounds = false
+        
     }
     
     required init?(coder: NSCoder) {

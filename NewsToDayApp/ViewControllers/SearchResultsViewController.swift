@@ -57,7 +57,9 @@ class SearchResultsViewController: UIViewController {
                 mainNews: $0.content,
                 autor: $0.author ?? $0.publishedAt,
                 nameState:$0.title,
-                desc: $0.description)
+                desc: $0.description,
+                url: $0.url
+            )
         }))
     }
 }

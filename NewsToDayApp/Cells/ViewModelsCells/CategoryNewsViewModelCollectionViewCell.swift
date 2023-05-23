@@ -25,6 +25,12 @@ class CategoryNewsViewModelCollectionViewCell: UICollectionViewCell {
         contentView.layer.cornerRadius = 20
         contentView.backgroundColor = .blueButtonColor
         contentView.addSubview(categoryNewsLbl)
+        
+        contentView.layer.shadowOpacity = 5
+        contentView.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3).cgColor
+        contentView.layer.shadowOffset = CGSize(width: -5, height: 0)
+        contentView.layer.shadowRadius = 3
+        contentView.layer.masksToBounds = false
     }
     
     required init?(coder: NSCoder) {

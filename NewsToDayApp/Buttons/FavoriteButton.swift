@@ -8,7 +8,7 @@
 import UIKit
 
 protocol FavorieteButtonTapped {
-    func tappedFavoriteButton(_ sender: FavoriteButton, recipeID: Int)
+    func tappedFavoriteButton(_ sender: FavoriteButton)
 
 }
 
@@ -16,7 +16,7 @@ class FavoriteButton: UIButton {
     private var iconConfiguration: UIImage.SymbolConfiguration!
     private var defaultColor: UIColor!
     var isFavorite: Bool?
-    
+    var delegete: FavorieteButtonTapped?
     init(iconPointSize: CGFloat = 35, withColor color: UIColor = .mainWhite) {
         super.init(frame: .zero)
         
@@ -26,6 +26,7 @@ class FavoriteButton: UIButton {
         self.defaultColor = color
         tintColor = .white
         isFavorite = false
+        addTarget(self, action: #selector(bookMarkTapped), for: .touchUpInside)
     }
     
     required init?(coder: NSCoder) {
@@ -45,5 +46,12 @@ class FavoriteButton: UIButton {
         isFavorite = false
 
     }
+    
+    @objc func bookMarkTapped() {
+        delegete?.tappedFavoriteButton(self)
+        print("334")
+    }
+    
+    
 }
 

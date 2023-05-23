@@ -89,7 +89,6 @@ class MainNewsViewController: UIViewController {
         
         var mainNews: MainNewsModel?
         var mainRecNews: MainNewsModel?
-        var topHeadLineNews: TopHeadlineNewsModel?
         let randomCat = category.randomElement() ?? "putin"
         
         let group = DispatchGroup()
@@ -163,7 +162,7 @@ class MainNewsViewController: UIViewController {
                 mainNews: $0.content,
                 autor: $0.author ?? $0.publishedAt,
                 nameState:$0.title,
-                desc: $0.description)
+                desc: $0.description, url: $0.url)
         })))
         
         sections.append(.news2(model: mainNewsResult.compactMap({
@@ -173,7 +172,7 @@ class MainNewsViewController: UIViewController {
                 mainNews: $0.content,
                 autor: $0.author ?? $0.publishedAt,
                 nameState:$0.title,
-                desc: $0.description)
+                desc: $0.description, url: $0.url)
             
         })))
         
@@ -184,7 +183,7 @@ class MainNewsViewController: UIViewController {
                 mainNews: $0.description,
                 autor: "",
                 nameState: "",
-                desc: $0.description)
+                desc: $0.description, url: $0.url)
         })))
         
         

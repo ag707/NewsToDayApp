@@ -14,4 +14,5 @@ struct JustReuseNewsModelView {
     let autor: String
     let nameState: String
     let desc: String
+    let url: String
 }

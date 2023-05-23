@@ -39,15 +39,21 @@ class RecomendedNewsViewCollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        contentView.backgroundColor = .mainWhite
+        contentView.backgroundColor = .systemBackground
         contentView.layer.cornerRadius = 10
         contentView.addSubview(newsNameLbl)
         contentView.addSubview(newsCoverImage)
         contentView.addSubview(newsSourceLbl)
         
         contentView.clipsToBounds = true
-        contentView.layer.borderColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1).cgColor
-        contentView.layer.borderWidth = 0.1
+//        contentView.layer.borderColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1).cgColor
+//        contentView.layer.borderWidth = 0.1
+        
+        contentView.layer.shadowOpacity = 5
+        contentView.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3).cgColor
+        contentView.layer.shadowOffset = CGSize(width: -5, height: 0)
+        contentView.layer.shadowRadius = 3
+        contentView.layer.masksToBounds = false
     }
     
     required init?(coder: NSCoder) {
