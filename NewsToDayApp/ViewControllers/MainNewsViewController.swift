@@ -10,9 +10,9 @@ import ProgressHUD
 
 //MARK: - Screen Sections Enum & TitileHeader String
 enum SectionsVariable {
-    case news1(model: [JustNewsModelView])
-    case news2(model: [JustNewsModelView])
-    case news3(model: [JustNewsModelView])
+    case news1(model: [JustReuseNewsModelView])
+    case news2(model: [JustReuseNewsModelView])
+    case news3(model: [JustReuseNewsModelView])
     
     var title: String {
         switch self {
@@ -32,7 +32,7 @@ class MainNewsViewController: UIViewController {
     
     var dataModel = [NewsResult]()
     
-    let category = ["Business", "Sport", "Politics", "Health","Science", "Gaming", "Technology"]
+    var category = ["Covid-19","Sports","Politics","Life","Gaming","Animals","Nature","Food","Art","History"]
     
     let searchController: UISearchController = {
         let vc = UISearchController(searchResultsController: SearchResultsViewController())
@@ -59,7 +59,8 @@ class MainNewsViewController: UIViewController {
         navigationItem.largeTitleDisplayMode = .never
         navigationItem.searchController = searchController
         
-        fetchData()
+        let randomCat = category.randomElement() ?? "putin"
+        fetchData(with: randomCat)
         configureCollectionView()
     }
     
@@ -75,7 +76,7 @@ class MainNewsViewController: UIViewController {
         collectionView.dataSource = self
         
         
-        collectionView.backgroundColor = .systemBackground
+        collectionView.backgroundColor = .systemGroupedBackground
         
         collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
         collectionView.register(MainNewsModelViewCollectionViewCell.self, forCellWithReuseIdentifier: MainNewsModelViewCollectionViewCell.identifire)
@@ -84,12 +85,10 @@ class MainNewsViewController: UIViewController {
         collectionView.register(TitleHeaderCollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: TitleHeaderCollectionReusableView.identifire)
     }
     //MARK: - Data Fetch Methods
-    private func fetchData() {
+    private func fetchData(with cat: String) {
         
         var mainNews: MainNewsModel?
         var mainRecNews: MainNewsModel?
-        var topHeadLineNews: TopHeadlineNewsModel?
-        
         let randomCat = category.randomElement() ?? "putin"
         
         let group = DispatchGroup()
@@ -99,13 +98,14 @@ class MainNewsViewController: UIViewController {
         
         
         ProgressHUD.show()
-        APICaller.shared.fetchNewsPopularNewsRequest(request: randomCat) { result in
+        APICaller.shared.fetchNewsPopularNewsRequest(request: cat) { result in
             defer {
                 group.leave()
             }
             switch result {
             case .failure(let error):
                 print(error)
+                ProgressHUD.showFailed()
             case .success(let news):
                 mainNews = news
                 //print(news)
@@ -113,13 +113,14 @@ class MainNewsViewController: UIViewController {
             }
         }
         
-        APICaller.shared.fetchNewsPopularNewsRequest(request: "design") { result in
+        APICaller.shared.fetchNewsPopularNewsRequest(request: randomCat) { result in
             defer {
                 group.leave()
             }
             switch result {
             case .failure(let error):
                 print(error)
+                ProgressHUD.showFailed()
             case .success(let news):
                 mainRecNews = news
                 //print(news)
@@ -127,18 +128,18 @@ class MainNewsViewController: UIViewController {
             }
         }
         
-//        APICaller.shared.fetchNewsTopNewsRequest { result in
-//            defer {
-//                group.leave()
-//            }
-//            switch result {
-//            case .success(let model):
-//                //print(model)
-//                topHeadLineNews = model
-//            case .failure(let error):
-//                print(error.localizedDescription)
-//            }
-//        }
+        //        APICaller.shared.fetchNewsTopNewsRequest { result in
+        //            defer {
+        //                group.leave()
+        //            }
+        //            switch result {
+        //            case .success(let model):
+        //                //print(model)
+        //                topHeadLineNews = model
+        //            case .failure(let error):
+        //                print(error.localizedDescription)
+        //            }
+        //        }
         
         group.notify(queue: .main) {
             guard let freshNews = mainNews?.articles,
@@ -147,6 +148,7 @@ class MainNewsViewController: UIViewController {
             }
             ProgressHUD.dismiss()
             self.configureModels(mainNewsResult: freshNews, mainRecNews: recNews)
+            
         }
     }
     //MARK: - Sections Model Configure Methods
@@ -154,32 +156,36 @@ class MainNewsViewController: UIViewController {
         
         dataModel = mainNewsResult
         sections.append(.news1(model: mainNewsResult.compactMap({
-            return JustNewsModelView(
+            return JustReuseNewsModelView(
                 imageURL: URL(string: $0.urlToImage ?? Constants.stockImage) ,
                 newsCateg: $0.source.name,
                 mainNews: $0.content,
                 autor: $0.author ?? $0.publishedAt,
-                nameState:$0.title)
+                nameState:$0.title,
+                desc: $0.description, url: $0.url)
         })))
         
         sections.append(.news2(model: mainNewsResult.compactMap({
-            return JustNewsModelView(
+            return JustReuseNewsModelView(
                 imageURL: URL(string: $0.urlToImage ?? Constants.stockImage),
                 newsCateg: $0.source.name,
                 mainNews: $0.content,
                 autor: $0.author ?? $0.publishedAt,
-                nameState:$0.title)
+                nameState:$0.title,
+                desc: $0.description, url: $0.url)
             
         })))
         
         sections.append(.news3(model: mainRecNews.compactMap({
-            return JustNewsModelView(
+            return JustReuseNewsModelView(
                 imageURL: URL(string: $0.urlToImage ?? Constants.stockImage),
                 newsCateg: $0.source.name,
                 mainNews: $0.description,
                 autor: "",
-                nameState: "")
+                nameState: "",
+                desc: $0.description, url: $0.url)
         })))
+        
         
         collectionView.reloadData()
         
@@ -204,7 +210,7 @@ class MainNewsViewController: UIViewController {
                     widthDimension: .fractionalWidth(0.9),
                     heightDimension: .fractionalHeight(0.9 )))
             
-            item.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 10, bottom: 2, trailing: 2)
+            item.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 15, bottom: 2, trailing: 2)
             let verticalGroup = NSCollectionLayoutGroup.vertical(
                 layoutSize: NSCollectionLayoutSize(
                     widthDimension: .fractionalWidth(0.5),
@@ -229,7 +235,7 @@ class MainNewsViewController: UIViewController {
                     widthDimension: .absolute(250),
                     heightDimension: .absolute(250)))
             
-            item.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 20)
+            item.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 15, bottom: 5, trailing: 15)
             
             let verticalGroup = NSCollectionLayoutGroup.vertical(
                 layoutSize: NSCollectionLayoutSize(
@@ -255,7 +261,7 @@ class MainNewsViewController: UIViewController {
                     widthDimension: .fractionalWidth(1.0),
                     heightDimension: .absolute(100)))
             
-            item.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 10, bottom: 2, trailing: 2)
+            item.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 15, bottom: 2, trailing: 15)
             
             let group = NSCollectionLayoutGroup.vertical(
                 layoutSize: NSCollectionLayoutSize(
@@ -324,7 +330,10 @@ extension MainNewsViewController: UICollectionViewDelegate, UICollectionViewData
         
         switch type {
         case .news1(let viewModel):
-            break
+            sections.removeAll()
+            let categoryReguest = category[indexPath.row]
+            fetchData(with: categoryReguest)
+            collectionView.reloadData()
         case .news2(let viewModel):
             let model = viewModel[indexPath.row]
             let vc = ResultsViewController()
@@ -368,11 +377,36 @@ extension MainNewsViewController: UICollectionViewDelegate, UICollectionViewData
     }
 }
 //MARK: - Search Delegate Extensions
-extension MainNewsViewController: UISearchResultsUpdating, UISearchBarDelegate {
+extension MainNewsViewController: UISearchResultsUpdating, UISearchBarDelegate, UISearchControllerDelegate {
     
     func updateSearchResults(for searchController: UISearchController) {
-        print(searchController.searchBar.text)
+        guard let query = searchController.searchBar.text,
+              !query.trimmingCharacters(in: .whitespaces).isEmpty else { return }
+        
+        let resultController = searchController.searchResultsController as! SearchResultsViewController
+        ProgressHUD.show()
+        
+        APICaller.shared.fetchSearchNews(request: query) { result in
+            DispatchQueue.main.async {
+                switch result {
+                case .failure(let error):
+                    print(error.localizedDescription)
+                    ProgressHUD.showFailed()
+                case .success(let searcModel):
+                    resultController.updateTableView(with: searcModel)
+                    ProgressHUD.dismiss()
+                    if searcModel.totalResults == 0 {
+                        ProgressHUD.showFailed()
+                        let alertC = UIAlertController(title: "Wrong data!", message: "Something wrong with data files! Try to refresh your request..", preferredStyle: .alert)
+                        
+                        let alertAction = UIAlertAction(title: "Try Again!", style: .default) {_ in
+                            searchController.searchBar.text = ""
+                        }
+                        alertC.addAction(alertAction)
+                        self.present(alertC, animated: true, completion: nil)
+                    }
+                }
+            }
+        }
     }
-    
-    
 }

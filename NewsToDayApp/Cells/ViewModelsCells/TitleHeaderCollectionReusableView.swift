@@ -13,14 +13,14 @@ class TitleHeaderCollectionReusableView: UICollectionReusableView {
     private let label: UILabel = {
         let label = UILabel()
         label.textColor = .label
-        label.font = .systemFont(ofSize: 20, weight: .semibold)
+        label.font = .systemFont(ofSize: 20, weight: .thin)
         label.numberOfLines = 1
         return label
     }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .systemBackground
+        backgroundColor = .systemGroupedBackground
         addSubview(label)
     }
     

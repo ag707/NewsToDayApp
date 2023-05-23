@@ -9,7 +9,7 @@ import Foundation
 
 struct Constants {
     static let baseAPIUrl = "https://newsapi.org/v2/"
-    static let popularPref = "everything?language=en&"
+    static let popularPref = "everything?"
     static let topPref = "top-headlines/sources?"
     static let country = "country=us"
     static let apiKey = "&apiKey=7a38df787ac74fc6acba9dca4350aa8b"

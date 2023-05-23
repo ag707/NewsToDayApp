@@ -10,7 +10,7 @@ import UIKit
 class BookmarksViewController: UIViewController {
     
     // заглушка - при пустом значении показывается текст о добавлении закладок. При наличии значении - показывает ячейки
-    private let bookmarks: [Int] = []
+    private let bookmarks: [JustReuseNewsModelView] = []
     
     private let headerLabel: UILabel = {
         let label = UILabel()
@@ -31,7 +31,7 @@ class BookmarksViewController: UIViewController {
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
-        tableView.register(TableViewCell.self, forCellReuseIdentifier: "cellID")
+        tableView.register(BookmarkTableViewCell.self, forCellReuseIdentifier: "cellID")
         tableView.separatorStyle = .none
         tableView.delegate = self
         tableView.dataSource = self
@@ -114,7 +114,7 @@ class BookmarksViewController: UIViewController {
     
     private func setConstraints() {
         NSLayoutConstraint.activate([
-            headerLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
+            headerLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 70),
             headerLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             
             secondaryHeaderLabel.topAnchor.constraint(equalTo: headerLabel.bottomAnchor, constant: 10),
@@ -138,7 +138,7 @@ extension BookmarksViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "cellID") as? TableViewCell else { return UITableViewCell() }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "cellID") as? BookmarkTableViewCell else { return UITableViewCell() }
         // после подключения сетевого слоя - доставать атрибуты модельки Bookmarks
         //        let type = bookmarks[indexPath.row]
         //        let primaryText = type.primaryText

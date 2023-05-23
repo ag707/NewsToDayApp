@@ -15,8 +15,8 @@ class RecomendedNewsViewCollectionViewCell: UICollectionViewCell {
     private let newsNameLbl: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
-        label.font = .systemFont(ofSize: 18, weight: .semibold)
-        label.contentMode = .scaleAspectFill
+        label.font = .systemFont(ofSize: 15, weight: .regular)
+        //label.contentMode = .left
         return label
     }()
     
@@ -39,13 +39,21 @@ class RecomendedNewsViewCollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        contentView.backgroundColor = .secondarySystemBackground
+        contentView.backgroundColor = .systemBackground
         contentView.layer.cornerRadius = 10
         contentView.addSubview(newsNameLbl)
         contentView.addSubview(newsCoverImage)
         contentView.addSubview(newsSourceLbl)
         
         contentView.clipsToBounds = true
+//        contentView.layer.borderColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1).cgColor
+//        contentView.layer.borderWidth = 0.1
+        
+        contentView.layer.shadowOpacity = 5
+        contentView.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3).cgColor
+        contentView.layer.shadowOffset = CGSize(width: -5, height: 0)
+        contentView.layer.shadowRadius = 3
+        contentView.layer.masksToBounds = false
     }
     
     required init?(coder: NSCoder) {
@@ -59,20 +67,18 @@ class RecomendedNewsViewCollectionViewCell: UICollectionViewCell {
             width: contentView.width-imageSize-10, height: contentView.height-10))
         
         newsSourceLbl.sizeToFit()
-        
+        newsNameLbl.sizeToFit()
         newsCoverImage.frame = CGRect(x: 5, y: 5, width: imageSize, height: imageSize)
-        
-        //let albumLabelHeight = min(20, newsSourceLbl.height)
         
         newsNameLbl.frame = CGRect(
             x: newsCoverImage.right+10 ,
-            y: 5,
-            width: albumLAbelSize.width ,
-            height: newsSourceLbl.height)
+            y: contentView.top+2,
+            width: contentView.width-5 - newsCoverImage.right-10 ,
+            height: 50)
         
         newsSourceLbl.frame = CGRect(
             x: newsCoverImage.right+10 ,
-            y: newsNameLbl.bottom+30,
+            y: contentView.bottom-35,
             width: contentView.width - newsCoverImage.right-10 ,
             height: 30)
         
@@ -85,8 +91,8 @@ class RecomendedNewsViewCollectionViewCell: UICollectionViewCell {
         newsCoverImage.image = nil
     }
     
-    func configure(with model: JustNewsModelView ) {
-        newsNameLbl.text = model.mainNews
+    func configure(with model: JustReuseNewsModelView ) {
+        newsNameLbl.text = model.desc
         newsSourceLbl.text = model.newsCateg
         newsCoverImage.sd_setImage(with: model.imageURL ?? URL(string: Constants.stockImage))
     }

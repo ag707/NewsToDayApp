@@ -47,7 +47,7 @@ class MainTabBarController: UITabBarController {
         nav3.navigationBar.tintColor = .label
         nav4.navigationBar.tintColor = .label
         
-        setViewControllers([nav1,nav2,nav3,nav4], animated: false)
+        setViewControllers([nav1,nav3,nav4], animated: false)
     }
 }
 
