@@ -2,7 +2,7 @@
 //  APICaller.swift
 //  NewsToDayApp
 //
-//  Created by Админ on 17.05.2023.
+//  Created by Borisov Nikita on 17.05.2023.
 //
 
 import Foundation

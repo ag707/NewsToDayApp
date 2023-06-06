@@ -2,7 +2,7 @@
 //  SearchResultDefaultTableViewCell.swift
 //  NewsToDayApp
 //
-//  Created by Админ on 19.05.2023.
+//  Created by Borisov Nikita on 19.05.2023.
 //
 
 import UIKit

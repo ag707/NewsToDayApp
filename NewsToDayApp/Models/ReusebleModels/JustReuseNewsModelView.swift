@@ -2,12 +2,12 @@
 //  JustNewsModelView.swift
 //  NewsToDayApp
 //
-//  Created by Админ on 17.05.2023.
+//  Created by Borisov Nikita on 17.05.2023.
 //
 
 import Foundation
 
-struct JustReuseNewsModelView {
+struct JustReuseNewsModelView: Codable {
     let imageURL: URL?
     let newsCateg: String
     let mainNews: String

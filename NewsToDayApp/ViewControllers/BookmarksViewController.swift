@@ -2,15 +2,35 @@
 //  BookmarksViewController.swift
 //  NewsToDayApp
 //
-//  Created by Админ on 18.05.2023.
+//  Created by Borisov Nikita on 18.05.2023.
 //
 
 import UIKit
 
 class BookmarksViewController: UIViewController {
     
-    // заглушка - при пустом значении показывается текст о добавлении закладок. При наличии значении - показывает ячейки
-    private let bookmarks: [JustReuseNewsModelView] = []
+    static let shared = BookmarksViewController()
+    var bookMarkData: [JustReuseNewsModelView] = []
+    
+    var bookmarks: [JustReuseNewsModelView]{
+        get {
+            if let data = defaults.value(forKey: "bookmarks") as? Data {
+                return try! PropertyListDecoder().decode([JustReuseNewsModelView].self, from: data)
+            } else {
+                return [JustReuseNewsModelView]()
+            }
+        } set {
+            if let data = try? PropertyListEncoder().encode(newValue) {
+                defaults.set(data, forKey: "bookmarks")
+            } else {
+                defaults.removeObject(forKey: "bookmarks")
+            }
+        }
+    }
+    
+    public var defaults = UserDefaults.standard
+    
+    var update: (()-> Void)?
     
     private let headerLabel: UILabel = {
         let label = UILabel()
@@ -31,8 +51,9 @@ class BookmarksViewController: UIViewController {
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
-        tableView.register(BookmarkTableViewCell.self, forCellReuseIdentifier: "cellID")
-        tableView.separatorStyle = .none
+        tableView.register(BookmarkTableViewCell.self, forCellReuseIdentifier: BookmarkTableViewCell.identifire)
+        tableView.allowsSelection = true
+        tableView.separatorStyle = .singleLine
         tableView.delegate = self
         tableView.dataSource = self
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -64,7 +85,7 @@ class BookmarksViewController: UIViewController {
         label.setContentCompressionResistancePriority(.required, for: .vertical)
         label.setContentHuggingPriority(.required, for: .vertical)
         label.textAlignment = .center
-        label.font = UIFont.systemFont(ofSize: 20)
+        label.font = UIFont.systemFont(ofSize: 17)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -95,6 +116,11 @@ class BookmarksViewController: UIViewController {
         view.backgroundColor = .white
         addSubviews()
         setConstraints()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
         checkIfEmpty()
     }
     
@@ -108,7 +134,6 @@ class BookmarksViewController: UIViewController {
         view.addSubview(headerLabel)
         view.addSubview(secondaryHeaderLabel)
         view.addSubview(tableView)
-//        view.addSubview(bannerLabel)
         view.addSubview(emptyStackView)
     }
     
@@ -130,23 +155,60 @@ class BookmarksViewController: UIViewController {
 
         ])
     }
+        
+    func addSomeBookMark(with model: JustReuseNewsModelView) {
+        
+        let newsBookMarks = JustReuseNewsModelView(
+            imageURL: model.imageURL,
+            newsCateg: model.newsCateg,
+            mainNews: model.mainNews,
+            autor: model.autor,
+            nameState: model.nameState,
+            desc: model.desc,
+            url: model.url)
+        
+        bookmarks.insert(newsBookMarks, at: 0)
+    }
+        
+    func deleteSomeBookMark(with model: [JustReuseNewsModelView]) {
+        
+        defaults.removeObject(forKey: "bookmarks")
+        
+        tableView.reloadData()
+        checkIfEmpty()
+    }
 }
 
 extension BookmarksViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         bookmarks.count
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "cellID") as? BookmarkTableViewCell else { return UITableViewCell() }
-        // после подключения сетевого слоя - доставать атрибуты модельки Bookmarks
-        //        let type = bookmarks[indexPath.row]
-        //        let primaryText = type.primaryText
-        cell.configure(primaryText: "test", secondaryText: "test", image: UIImage(systemName: "xmark.circle") ?? UIImage())
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: BookmarkTableViewCell.identifire) as? BookmarkTableViewCell else { return UITableViewCell() }
+        let cellInfo = bookmarks[indexPath.row]
+        cell.configure(cellInfo)
         return cell
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: false)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return view.frame.height / 7
+        return 100
+    }
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        true
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            bookmarks.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+            checkIfEmpty()
+        }
     }
 }
+
+

@@ -14,8 +14,8 @@
             filePath = "NewsToDayApp/ViewControllers/MainNewsViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "101"
-            endingLineNumber = "101"
+            startingLineNumber = "116"
+            endingLineNumber = "116"
             landmarkName = "fetchData(with:)"
             landmarkType = "7">
             <Locations>
@@ -62,8 +62,8 @@
             filePath = "NewsToDayApp/ViewControllers/MainNewsViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "107"
-            endingLineNumber = "107"
+            startingLineNumber = "122"
+            endingLineNumber = "122"
             landmarkName = "fetchData(with:)"
             landmarkType = "7">
          </BreakpointContent>

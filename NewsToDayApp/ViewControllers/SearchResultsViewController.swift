@@ -2,7 +2,7 @@
 //  SearchResultsViewController.swift
 //  NewsToDayApp
 //
-//  Created by Админ on 17.05.2023.
+//  Created by Borisov Nikita on 17.05.2023.
 //
 
 import Foundation
@@ -40,17 +40,19 @@ class SearchResultsViewController: UIViewController {
         blurView.frame = view.bounds
         blurView.effect = UIBlurEffect(style: .light)
         view.addSubview(blurView)
-        blurView.contentView.addSubview(tableView)
+        view.addSubview(tableView)
     }
     
     public func updateTableView(with result: MainNewsModel) {
         searchBarResult = [result]
-        
+        print([result].count)
         tableView.isHidden = searchBarResult.isEmpty
         tableView.reloadData()
+        
         bucket.removeAll()
-        guard let unwrap = searchBarResult.first?.articles else {return}
-        bucket.append(contentsOf: unwrap.compactMap({
+        guard let unwrap = self.searchBarResult.first?.articles else {return}
+        //        DispatchQueue.main.async {
+        self.bucket.append(contentsOf: unwrap.compactMap({
             return JustReuseNewsModelView(
                 imageURL: URL(string: $0.urlToImage ?? Constants.stockImage) ,
                 newsCateg: $0.source.name,
@@ -61,13 +63,15 @@ class SearchResultsViewController: UIViewController {
                 url: $0.url
             )
         }))
+        
+        
     }
 }
 
 extension SearchResultsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return bucket.count
+        return 50
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -78,9 +82,14 @@ extension SearchResultsViewController: UITableViewDelegate, UITableViewDataSourc
         guard let cell = tableView.dequeueReusableCell(withIdentifier: SearchResultDefaultTableViewCell.identifire, for: indexPath) as? SearchResultDefaultTableViewCell else {
             return UITableViewCell()
         }
-        let result = bucket[indexPath.row]
-        cell.configure(result)
-        cell.backgroundColor = .clear
+        
+        if bucket.isEmpty {
+            bucket.removeAll()
+        } else {
+            let result = bucket[indexPath.row+1]
+            cell.configure(result)
+            cell.backgroundColor = .clear
+        }
         return cell
     }
     

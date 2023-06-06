@@ -2,7 +2,7 @@
 //  BookmarkCell.swift
 //  NewsToDayApp
 //
-//  Created by Админ on 18.05.2023.
+//  Created by Borisov Nikita on 18.05.2023.
 //
 import UIKit
 

@@ -2,7 +2,7 @@
 //  RecomendedNewsViewCollectionViewCell.swift
 //  NewsToDayApp
 //
-//  Created by Админ on 17.05.2023.
+//  Created by Borisov Nikita on 17.05.2023.
 //
 
 import UIKit
@@ -39,7 +39,7 @@ class RecomendedNewsViewCollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        contentView.backgroundColor = .systemBackground
+        contentView.backgroundColor = #colorLiteral(red: 0.3254901961, green: 0.3176470588, blue: 0.8392156863, alpha: 0.2570956401)
         contentView.layer.cornerRadius = 10
         contentView.addSubview(newsNameLbl)
         contentView.addSubview(newsCoverImage)

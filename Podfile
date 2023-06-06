@@ -7,5 +7,5 @@ target 'NewsToDayApp' do
 
   pod 'SDWebImage'
   pod "ProgressHUD"
-
+  pod "SnapKit"
 end

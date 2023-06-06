@@ -2,12 +2,11 @@
 //  MainNewsViewController.swift
 //  NewsToDayApp
 //
-//  Created by Админ on 17.05.2023.
+//  Created by Borisov Nikita on 17.05.2023.
 //
 
 import UIKit
 import ProgressHUD
-
 //MARK: - Screen Sections Enum & TitileHeader String
 enum SectionsVariable {
     case news1(model: [JustReuseNewsModelView])
@@ -37,10 +36,25 @@ class MainNewsViewController: UIViewController {
     let searchController: UISearchController = {
         let vc = UISearchController(searchResultsController: SearchResultsViewController())
         vc.searchBar.placeholder = "News, talks, rumors.."
-        vc.searchBar.searchBarStyle = .minimal
+        vc.searchBar.searchBarStyle = .prominent
         vc.definesPresentationContext = true
         return vc
     }()
+    
+//    private let backgroundview: UIView = {
+//        let view = UIView()
+//        view.layer.zPosition = 1
+//        view.backgroundColor = .clear
+//        return view
+//    }()
+//
+//    private let backgroundImage: UIImageView = {
+//        let imageView = UIImageView()
+//        imageView.layer.zPosition = 0
+//        imageView.image = UIImage(named: "backImage")
+//        imageView.alpha = 1
+//        return imageView
+//    }()
     
     private var collectionView: UICollectionView = UICollectionView(
         frame: .zero,
@@ -51,10 +65,14 @@ class MainNewsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = .white
         
         searchController.searchResultsUpdater = self
         searchController.searchBar.delegate = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        definesPresentationContext = true
+        searchController.searchBar.tintColor = .black
+        navigationController?.navigationBar.tintColor = UIColor.black
         
         navigationItem.largeTitleDisplayMode = .never
         navigationItem.searchController = searchController
@@ -67,16 +85,13 @@ class MainNewsViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         collectionView.frame = view.bounds
-        
+        collectionView.backgroundColor = .clear
     }
     
     private func configureCollectionView() {
         view.addSubview(collectionView)
         collectionView.delegate = self
         collectionView.dataSource = self
-        
-        
-        collectionView.backgroundColor = .systemGroupedBackground
         
         collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
         collectionView.register(MainNewsModelViewCollectionViewCell.self, forCellWithReuseIdentifier: MainNewsModelViewCollectionViewCell.identifire)
@@ -196,8 +211,8 @@ class MainNewsViewController: UIViewController {
             
             NSCollectionLayoutBoundarySupplementaryItem(
                 layoutSize: NSCollectionLayoutSize(
-                    widthDimension: .fractionalWidth(1),
-                    heightDimension: .absolute(50)),
+                    widthDimension: .absolute(380),
+                    heightDimension: .absolute(40)),
                 elementKind: UICollectionView.elementKindSectionHeader,
                 alignment: .top)
             
@@ -313,7 +328,6 @@ extension MainNewsViewController: UICollectionViewDelegate, UICollectionViewData
         case .news3(let viewModels):
             return viewModels.count
         }
-        
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
@@ -327,23 +341,21 @@ extension MainNewsViewController: UICollectionViewDelegate, UICollectionViewData
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let type = sections[indexPath.section]
-        
         switch type {
         case .news1(let viewModel):
             sections.removeAll()
             let categoryReguest = category[indexPath.row]
             fetchData(with: categoryReguest)
-            collectionView.reloadData()
         case .news2(let viewModel):
             let model = viewModel[indexPath.row]
             let vc = ResultsViewController()
             vc.configureResultVc(with: model)
-            navigationController?.pushViewController(vc, animated: true)
+            present(vc, animated: true)
         case .news3(let viewModel):
             let model = viewModel[indexPath.row]
             let vc = ResultsViewController()
             vc.configureResultVc(with: model)
-            navigationController?.pushViewController(vc, animated: true)
+            present(vc, animated: true)
         }
     }
     

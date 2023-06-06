@@ -2,7 +2,7 @@
 //  TitleHeaderCollectionReusableView.swift
 //  NewsToDayApp
 //
-//  Created by Админ on 17.05.2023.
+//  Created by Borisov Nikita on 17.05.2023.
 //
 
 import UIKit
@@ -20,7 +20,13 @@ class TitleHeaderCollectionReusableView: UICollectionReusableView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .systemGroupedBackground
+        backgroundColor = #colorLiteral(red: 0.1215686275, green: 0.3411764706, blue: 0.4078431373, alpha: 0.1537726194)
+        layer.cornerRadius = 17
+        layer.shadowOpacity = 5
+        layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3).cgColor
+        layer.shadowOffset = CGSize(width: -5, height: 0)
+        layer.shadowRadius = 3
+        layer.masksToBounds = false
         addSubview(label)
     }
     
