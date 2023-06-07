@@ -41,20 +41,20 @@ class MainNewsViewController: UIViewController {
         return vc
     }()
     
-//    private let backgroundview: UIView = {
-//        let view = UIView()
-//        view.layer.zPosition = 1
-//        view.backgroundColor = .clear
-//        return view
-//    }()
-//
-//    private let backgroundImage: UIImageView = {
-//        let imageView = UIImageView()
-//        imageView.layer.zPosition = 0
-//        imageView.image = UIImage(named: "backImage")
-//        imageView.alpha = 1
-//        return imageView
-//    }()
+    //    private let backgroundview: UIView = {
+    //        let view = UIView()
+    //        view.layer.zPosition = 1
+    //        view.backgroundColor = .clear
+    //        return view
+    //    }()
+    //
+    //    private let backgroundImage: UIImageView = {
+    //        let imageView = UIImageView()
+    //        imageView.layer.zPosition = 0
+    //        imageView.image = UIImage(named: "backImage")
+    //        imageView.alpha = 1
+    //        return imageView
+    //    }()
     
     private var collectionView: UICollectionView = UICollectionView(
         frame: .zero,
@@ -177,7 +177,9 @@ class MainNewsViewController: UIViewController {
                 mainNews: $0.content,
                 autor: $0.author ?? $0.publishedAt,
                 nameState:$0.title,
-                desc: $0.description, url: $0.url)
+                desc: $0.description,
+                url: $0.url,
+                bookMark: false)
         })))
         
         sections.append(.news2(model: mainNewsResult.compactMap({
@@ -187,7 +189,9 @@ class MainNewsViewController: UIViewController {
                 mainNews: $0.content,
                 autor: $0.author ?? $0.publishedAt,
                 nameState:$0.title,
-                desc: $0.description, url: $0.url)
+                desc: $0.description,
+                url: $0.url,
+                bookMark: false)
             
         })))
         
@@ -198,7 +202,9 @@ class MainNewsViewController: UIViewController {
                 mainNews: $0.description,
                 autor: "",
                 nameState: "",
-                desc: $0.description, url: $0.url)
+                desc: $0.description,
+                url: $0.url,
+                bookMark: false)
         })))
         
         
@@ -402,12 +408,12 @@ extension MainNewsViewController: UISearchResultsUpdating, UISearchBarDelegate, 
             DispatchQueue.main.async {
                 switch result {
                 case .failure(let error):
-                    print(error.localizedDescription)
+                    print(error)
                     ProgressHUD.showFailed()
                 case .success(let searcModel):
                     resultController.updateTableView(with: searcModel)
                     ProgressHUD.dismiss()
-                    if searcModel.totalResults == 0 {
+                    if searcModel.totalResults == nil {
                         ProgressHUD.showFailed()
                         let alertC = UIAlertController(title: "Wrong data!", message: "Something wrong with data files! Try to refresh your request..", preferredStyle: .alert)
                         

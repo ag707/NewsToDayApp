@@ -15,4 +15,5 @@ struct JustReuseNewsModelView: Codable {
     let nameState: String
     let desc: String
     let url: String
+    let bookMark: Bool
 }

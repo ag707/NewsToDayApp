@@ -212,6 +212,7 @@ extension ResultsViewController {
     @objc func tappedCategoryButton(_ button: FavoriteButton) {
         if button.isFavorite == false {
             
+            
             BookmarksViewController.shared.addSomeBookMark(with: newsModel)
             
             button.setActive()
